@@ -1,0 +1,254 @@
+/*顶部SwiperView的设置*/
+.swiperImg {
+    width: 100%;
+    height: 250px;
+    position: sticky;
+    top: 1px;
+    z-index: 5;
+}
+
+/*顶部swiper图片的设置*/
+.viewImage {
+    width: 100%;
+    height: 100%;
+}
+
+/*总的菜单分类*/
+.KFC-Classifies {
+    width: 25%;
+    height: 1200px;
+    background-color: snow;
+    position: fixed;
+    z-index: 1;
+    border-radius: 20px;
+    margin-top: 2px;
+    color: #494949;
+}
+
+/*菜单分类下的每一个种类*/
+.KFC-Classify {
+    width: 90%;
+    height: 100px;
+    margin-left: 10px;
+    border-top: 3px solid #9d9b9b;
+    border-radius: 15px;
+}
+
+.KFC-Classify:hover {
+    background-color: #DDDDDD;
+}
+
+/*菜单分类中的图片*/
+.KFCImg {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    margin-top: 25px;
+    margin-left: 10px;
+    z-index: 3;
+}
+
+/*分类的文字*/
+.foodName {
+    line-height: 100px;
+    margin-left: 68px;
+    font-size: 35px;
+}
+
+/*温馨提示*/
+.tips {
+    width: 90%;
+    height: 100px;
+    margin-left: 10px;
+    text-align: center;
+    line-height: 100px;
+    border-top: 3px solid #9d9b9b;
+    border-bottom: 3px solid #9d9b9b;
+    font-size: 35px;
+    border-radius: 15px;
+}
+
+.tips:hover {
+    background-color: #DDDDDD;
+}
+
+/*菜单的详情信息*/
+.KFCDetail {
+    width: 75%;
+    margin-left: 25%;
+    z-index: 1;
+    margin-top: 2px;
+    background-color: #f8f7f7;
+}
+
+/*菜单详情的每一个具体子分类设置，共有5个方块*/
+.ClassifySubModule {
+
+}
+.ClassifySubModule .tipsName{
+    font-family: '宋体',serif;
+    font-weight: bold;
+}
+
+/*每一个小方块下，每个餐品的主模块*/
+.ClassifySubModule .SubModuleSub {
+    width: 97%;
+    margin-left: 10px;
+    margin-bottom: 33px;
+    background-color: white;
+    border-radius: 25px;
+}
+
+/*菜单详情的图片*/
+.SubModuleSub .foodImg {
+    width: 270px;
+    height: 240px;
+    border-radius: 25px;
+}
+
+/*菜单图片详情左边的View模块介绍文字，xxx汉堡、小吃*/
+.SubModuleSub .tipsFont {
+    position:absolute ;
+    margin-left: 264px;
+    margin-top: -210px;
+    font-family:"微软雅黑",serif;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: right;
+}
+.SubModuleSub .price{
+    position: absolute;
+    width: 120px;
+    height: 70px;
+    margin-left:420px;
+    margin-top: -155px;
+    text-align: center;
+    line-height: 70px;
+    font-size: 35px;
+}
+/*选择规格模块*/
+.SubModuleSub .choose{
+    color: white;
+    font-family:"宋体";
+    text-align: center;
+    line-height: 75px;
+    position: absolute;
+    width: 150px;
+    height: 80px;
+    margin-left: 397px;
+    margin-top: -80px;
+    background-color: crimson;
+    border-bottom-right-radius: 25px;
+    border-top-left-radius: 45px;
+}
+/*点击选规格模块弹出的菜单框*/
+.infoDisplay{
+    width: 100%;
+    height: 1100px;
+    background-color: white;
+}
+.back{
+    position: absolute;
+    margin-left: -40px;
+}
+.infoImg{
+    margin-top: 20px;
+}
+.foodInfo{
+    position: absolute;
+    width: 100%;
+    height: 200px;
+}
+.foodInfo .foodName{
+    margin-left: -370px;
+    font-size: larger;
+    font-weight: bold;
+}
+.foodPrice{
+    margin-left: -650px;
+    font-size: 45px;
+    color: crimson;
+}
+/*选规格中的加入购物车模块*/
+.shoppAdd{
+    width: 95%;
+    height: 100px;
+    margin-top: 400px;
+    margin-left: 20px;
+    /*background-color: #d2cece;*/
+    background-color:crimson ;
+    /*background-image: linear-gradient(to right,crimson, #b92644);*/
+    border-radius: 50px;
+}
+.shoppAdd .shopAddIcon{
+    margin-left: -400px;
+    margin-top: 10px;
+}
+.addFoodPrice{
+    margin-top: -65px;
+    font-size: 40px;
+    margin-left: -170px;
+}
+.addFoodBackground{
+    margin-top: -80px;
+    margin-left: 350px;
+    width: 400px;
+    height: 100px;
+
+}
+.addFoodBackground .addFood{
+    font-weight: bolder;
+    color: white;
+    text-align: center;
+    line-height: 100px;
+    letter-spacing: 15px;
+    font-size: 35px;
+}
+
+/*购物车CSS设置*/
+.ShoppingCart {
+    position: absolute;
+    background-color: #d2cece;
+    margin-left: 2%;
+    width: 95%;
+    height: 100px;
+    border-radius: 50px;
+    z-index: 20;
+    position: fixed;
+    bottom: 123px;
+}
+/*购物车图标设置*/
+.shopIcon {
+    margin-left: 100px;
+    margin-top: 10px;
+}
+/*购物车从左往右的设置*/
+/*购物车的背景设置,结算应该在有商品添加时出来，没有商品时应该不显示结算部分的信息*/
+/*购物车已选商品的金额 ￥*/
+.Total {
+    width: 200px;
+    height: 100px;
+    margin-left: 300px;
+    margin-top: -87.5px;
+    font-size: 40px;
+    line-height: 100px;
+
+}
+.giveMoneyBackground {
+    display: block;
+    margin-top: -101.5px;
+    margin-left: 513px;
+    width: 200px;
+    height: 100px;
+    background-image: linear-gradient(to right,crimson, #b92644);
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+/*购物车的结算部分的文字处理*/
+.giveMoney {
+    color: white;
+    font-family: '宋体';
+    text-align: center;
+    line-height: 100px;
+    margin-left: 50px;
+}
