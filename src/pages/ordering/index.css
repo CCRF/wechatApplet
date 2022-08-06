@@ -133,13 +133,20 @@
     text-align: center;
     line-height: 75px;
     position: absolute;
-    width: 150px;
+    width: 200px;
     height: 80px;
-    margin-left: 397px;
+    margin-left: 350px;
     margin-top: -80px;
     background-color: crimson;
     border-bottom-right-radius: 25px;
     border-top-left-radius: 45px;
+}
+.tipsBottom{
+    width: 100%;
+    height: 250px;
+    margin-left: 200px;
+    line-height: 250px;
+    margin-bottom: 220px;
 }
 /*点击选规格模块弹出的菜单框*/
 .infoDisplay{
@@ -235,7 +242,6 @@
 
 }
 .giveMoneyBackground {
-    display: block;
     margin-top: -101.5px;
     margin-left: 513px;
     width: 200px;
@@ -251,4 +257,18 @@
     text-align: center;
     line-height: 100px;
     margin-left: 50px;
+}
+/*点击购物车弹出的物品信息框*/
+.actionSheetCar{
+    z-index: 19;
+}
+.shoppingShowInfo{
+    width: 100%;
+    border: 1px solid #d2cece;
+}
+.shoppingBlack{
+    width: 100%;
+    height: 250px;
+
+
 }
