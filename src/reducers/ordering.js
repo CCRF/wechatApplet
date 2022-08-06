@@ -1,7 +1,7 @@
 const INITIAL_STATE = {
     foodList: []
 }
-export default function findfood(state = INITIAL_STATE, action) {
+export default function ordering(state = INITIAL_STATE, action) {
 
     let {type, data} = action
 
