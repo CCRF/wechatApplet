@@ -26,7 +26,7 @@ class TabBar extends Component {
         break;
       case 3:
         Taro.reLaunch({
-          url: '/pages/personal/index'
+          url: '/pages/mber/member'
         });
         break;
       default:

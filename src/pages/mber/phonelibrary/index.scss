@@ -1,0 +1,26 @@
+// 列表布局
+@import "~taro-ui/dist/style/components/list.scss";
+@import "~taro-ui/dist/style/components/icon.scss";
+// 模态框
+@import "~taro-ui/dist/style/components/modal.scss";
+// 头像区域
+.test-ha {
+  position: absolute;
+  top: 20px;
+  left: 80%;
+}
+// 头像
+.test-ha image {
+  width: 80px;
+  height: 80px;
+  border-radius: 100px;
+}
+.exitArea {
+  position: fixed;
+  //top: 95%;
+  width: 100%;
+  bottom: 0;
+}
+.exitArea button {
+  width: 100%;
+}
