@@ -1,0 +1,32 @@
+// 每天积分数量区域
+.integralNumArea>view {
+  float: left;
+  width: 60px;
+  height: 90px;
+  margin: 35px 0 0 35px;
+  border: 3px solid #00868B;
+  border-radius: 10px;
+}
+// 每天积分数量
+.integralNumArea>view>view {
+  width: 20px;
+  margin: 0 auto;
+  font-size: 20px;
+}
+// 每天积分区域下 积分图片区域
+.integralNumArea>view view:nth-child(1) {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+}
+// 每天积分数量图片
+.integralNumArea image {
+  width: 50px;
+  height: 50px;
+}
+// 已签和未签文本 区域
+.integralNumArea>view view:nth-child(3) {
+  width: 50px;
+  height: 50px;
+  margin: 20px auto 0 auto;
+}
