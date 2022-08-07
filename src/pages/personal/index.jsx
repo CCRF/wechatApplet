@@ -127,7 +127,7 @@ class Personal extends Component {
                 <View><Text>个人信息展示</Text></View>
                 <Button onClick={getUserProfile1}>测试</Button>
                 <Button openType={"getPhoneNumber"} onGetPhoneNumber={getPhoneNumber} >绑定手机</Button>
-                <TabBar tabBarCurrent={3} />
+                <TabBar tabBarCurrent={3}/>
             </View>
         )
     }

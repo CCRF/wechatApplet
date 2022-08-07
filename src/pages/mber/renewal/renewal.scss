@@ -1,0 +1,112 @@
+@import "node_modules/taro-ui/dist/style/components/tabs";
+// 头部区域
+.header {
+  width: 100%;
+  height: 250px;
+  background-image: linear-gradient(wheat, lightgray, white);
+}
+
+// 头部图标区域
+.i-a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  width: 80px;
+  height: 80px;
+  background-color: burlywood;
+  border-radius: 100px;
+  border: 5px solid white;
+  margin: 35px 0 0 25px;
+}
+
+// 头部区域图标
+.i-a view image {
+  width: 60px;
+  height: 60px;
+}
+
+// 头部区域中 电话，到期时间
+.p-a {
+  float: left;
+  margin: 35px 0 0 10px;
+}
+
+// 头部区域中 到期时间文本
+.t-a {
+  font-size: 22px;
+}
+
+// tabbar区域
+.a-t1 {
+  margin: -100px auto 0 auto;
+  width: 95%;
+  height: 1050px;
+  background-color: snow;
+  border: 1px solid wheat;
+  border-radius: 50px;
+}
+
+// tab标签区域
+.at-t {
+  width: 95%;
+  margin: 15px auto 0 auto;
+  //border: 1px solid red;
+}
+// 问答区域
+.f-a {
+  width: 95%;
+  height: 150px;
+  background-color: snow;
+  border: 1px solid wheat;
+  border-radius: 45px;
+  margin: 25px auto 0 auto;
+}
+// 问答区域图片共享样式
+.f-a image {
+  float: left;
+  width: 40px;
+  height: 40px;
+}
+// 问答区域中 问区域
+.f-a-ar1 {
+  width: 400px;
+  height: 50px;
+  margin: 25px 0 0 25px;
+}
+// 问答区域中 答区域
+.f-a-ar2 {
+  width: 400px;
+  height: 50px;
+  margin: 5px 0 0 25px;
+}
+// 问答区域下 文本1
+.f-a-t1 {
+  float: left;
+  width: auto;
+  height: auto;
+  margin-left: 10px;
+  //border: 3px solid red;
+}
+
+// 问答区域下 文本2
+.f-a-t2 {
+  float:left;
+  width: 500px;
+  height: auto;
+  font-size: 25px;
+  margin-top: -40px;
+  margin-left: 50px;
+  //border: 3px solid red;
+}
+
+// 问答区域下 文本3
+.f-a-t3 {
+  float: right;
+  font-size: 28px;
+  color: rgb(250, 90, 50);
+  margin-right: 20px;
+  margin-top: -55px;
+  //border: 3px solid red;
+}
+

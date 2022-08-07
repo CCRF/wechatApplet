@@ -1,0 +1,139 @@
+//跑马灯通知栏样式
+@import "~taro-ui/dist/style/components/noticebar.scss";
+// 轻提示样式
+@import "~taro-ui/dist/style/components/toast.scss";
+@import "~taro-ui/dist/style/components/icon.scss";
+// 模态框样式
+@import "~taro-ui/dist/style/components/modal.scss";
+.body {
+  background-image: linear-gradient(#F0FFF0,#F0FFF0);
+}
+// 头部区域
+.header {
+  width: 100%;
+  height: 230px;
+  background-image: linear-gradient(wheat, #FFEBCD ,lightgray);
+}
+// 积分区域
+.integralNum {
+  position: relative;
+  height: 100px;
+}
+// 积分图片
+.integralNum image {
+  width: 60px;
+  height: 60px;
+  border: 3px solid goldenrod;
+  border-radius: 100px;
+  top: 100px;
+  left:30px;
+}
+// 积分区域 积分数量
+.integralNum view:nth-child(1) {
+  float: left;
+  font-size: 40px;
+  margin: 35px 0 0 15px;
+
+}
+// 积分图片区域
+.integralNum view:nth-child(2) {
+  float: left;
+  margin: 25px 0 0 15px;
+}
+// 可用积分区域
+.integralText view{
+  margin: 15px 0 0 15px;
+}
+// 签到区域
+.signInArea {
+  width: 95%;
+  height: 250px;
+  border-radius: 20px;
+  margin: -40px auto 0 auto;
+  background-image: linear-gradient(wheat, #FFEBCD ,lightgray);
+  border: 3px solid #53868B;
+}
+// 签到领积分区域
+.signIn {
+  float: left;
+  margin: 15px 0 0 25px;
+}
+// 签到领积分区域文本一
+.signIn view:nth-child(1) {
+  font-size: 30px;
+}
+// 签到领积分区域文本二
+.signIn view:nth-child(2) {
+  font-size: 25px;
+}
+// 签到按钮区域
+.signInBtnArea {
+  float: left;
+  height: 80px;
+  border-radius: 60px;
+  margin: 15px 0 0 230px;
+}
+.signInBtnArea button {
+  font-size: 25px;
+  background-image: linear-gradient(#AEEEEE,#DCDCDC);
+  border: 3px solid #53868B;
+}
+// 任务区域
+.taskArea {
+  width: 95%;
+  height: 200px;
+  margin: 15px auto 0 auto;
+  border-radius: 30px;
+  background-image: linear-gradient(wheat, #FFEBCD ,lightgray);
+}
+// 任务区域 做任务文本
+.taskText {
+  width: 400px;
+  height: 50px;
+  padding: 15px 0 0 25px;
+}
+// 任务区域下 文本区域
+.taskTextArea {
+  width: 350px;
+  height: 100px;
+  float: left;
+  margin: 25px 0 0 25px;
+}
+// 任务区域下 按钮区域
+.taskBtnArea{
+  float: left;
+  margin: 35px 0 0 105px;
+}
+// 任务区域下 立即前往按钮
+.taskBtnArea button {
+  width: 200px;
+  height: 80px;
+  border-radius: 40px;
+  background-image: linear-gradient(#AEEEEE,#DCDCDC);
+  border: 3px solid #53868B;
+  font-size: 30px;
+}
+// 兑换权益区域
+.conversionArea {
+  width: 95%;
+  height: 400px;
+  border-radius: 20px;
+  margin: 15px auto 0 auto;
+  background-image: linear-gradient(wheat, #FFEBCD ,lightgray);
+}
+// 兑换权益区域下 文本 上间隙
+.conversionAreaGap {
+  height: 15px;
+}
+// 兑换权益区域下 文本
+.conversionAreaGap1 {
+  margin-left: 25px;
+}
+// 滚动区域
+.scrollview {
+  height: 300px;
+}
+
+
+
+

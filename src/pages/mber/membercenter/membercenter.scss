@@ -1,0 +1,108 @@
+.main {
+  //background-image: linear-gradient(to bottom,  rgba(229, 229, 229, 0),rgba(220,226,240, 1));
+  background-image: linear-gradient(rgb(228,228,226), rgb(234,222,222));
+  //color: rgb(220,226,240)
+  height:1200px;
+}
+// 头部区域间隙
+.gap {
+  height: 15px;
+}
+// 头部区域
+.header {
+  width: 90%;
+  height: 250px;
+  margin: 0 auto;
+  background-image: linear-gradient(wheat, lightgray, white);
+  border-radius: 30px;
+  border: 3px solid goldenrod;
+}
+// 头部区域手机号文本
+.header-text1 {
+  position: relative;
+  display: block;
+  margin: 25px 0 0 65px;
+  font-size: 35px;
+  width: 400px;
+  //border: 3px solid red;
+}
+// 头部区域积分值文本
+.header-text2 {
+  width: 300px;
+}
+.header-text2 text:nth-child(1){
+  width:130px;
+  margin: 25px 0 10px 65px;
+  //border: 3px solid red;
+  display: block;
+}
+.header-text2 text:nth-child(2) {
+  width:130px;
+  height: auto;
+  margin: 40px 0 0 65px;
+  //border: 3px solid red;
+  font-size: 50px;
+}
+// 头部区域下 文本
+.header-text3 {
+  position: absolute;
+  left: 300px;
+  top: 175px;
+  width: auto;
+  height: 100px;
+  margin: 0 25px 100px 0;
+}
+// 积分区域
+.integralArea {
+  background-image: linear-gradient(rgb(228,228,226), rgb(234,222,222));
+}
+.integralArea view {
+  text-align: center;
+  border-radius: 60px;
+  border: 3px solid wheat;
+  margin: 30px auto 0 auto;
+  background-image: linear-gradient(rgb(211,215,224), rgb(200,212,229));
+}
+.integralArea view:nth-child(1){
+  width:300px;
+}
+.integralArea view:nth-child(2) {
+  width:100%;
+}
+// 攻略区域
+.strategyArea {
+  width:95%;
+  margin: 30px auto 0 auto;
+  border-radius: 50px;
+  background-image: linear-gradient(rgb(211,215,224), rgb(200,212,229));
+  border: 3px solid wheat;
+}
+// 滑动视图
+.mySwiperArea {
+  width: 90%;
+  margin: 40px auto 0 auto;
+}
+// 查看攻略按钮区域
+.checkBtnArea {
+  margin: 0 auto;
+  width: 90%;
+}
+// 查看攻略按钮
+.checkBtnArea button {
+  border-radius: 60px;
+  font-size: 35px;
+  //background-image: linear-gradient();
+}
+// 底部图片区域
+.f-ImageArea {
+  margin: 30px auto 0 auto;
+  text-align: center;
+  width: 95%;
+}
+// 底部图片
+.f-ImageArea image {
+  border-radius: 30px;
+  margin: 0 auto;
+  width: 100%;
+  height: 350px;
+}
