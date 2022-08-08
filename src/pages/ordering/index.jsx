@@ -1,6 +1,5 @@
 import {Component} from 'react'
 import {View, Swiper, SwiperItem, Image, Text, ScrollView,} from '@tarojs/components'
-import TabBar from "../common/tabBar";
 import {AtActionSheet, AtIcon, AtBadge} from "taro-ui"
 import "./index.css"
 import {connect} from "react-redux";
@@ -293,8 +292,6 @@ class HotSpot extends Component {
                         <View className='shoppingBlack'>2222</View>
                     </View>
                 </AtActionSheet>
-
-                <TabBar tabBarCurrent={1}/>
 
             </View>
         )
