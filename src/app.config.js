@@ -19,7 +19,9 @@ export default defineAppConfig({
     {
       "root": "pages/order/",
       "pages": [
-        "index"
+        "index",
+        "theCurrentOrder",
+          "theHistoryOrder",
       ]
     },
     {
