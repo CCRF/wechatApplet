@@ -1,6 +1,5 @@
 import {Component} from 'react'
 import {Text, View} from '@tarojs/components'
-import TabBar from "../common/tabBar";
 import './index.scss'
 
 
@@ -56,8 +55,6 @@ class Home extends Component {
                 <View>
                     <Skip isOnGoing={this.state.orderType}></Skip>
                 </View>
-
-                <TabBar tabBarCurrent={2}/>
             </View>
         )
     }
