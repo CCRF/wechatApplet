@@ -1,0 +1,28 @@
+
+.btn3{
+    border: 3px solid red;
+}
+
+.allTitle {
+    display: flex;
+    justify-content: space-between;
+    background: #fafafa;
+    padding: 20px 40px;
+}
+
+.allMessage {
+    margin-bottom: 40px;
+    background: white;
+    padding: 20px 0;
+}
+
+.allType {
+    display: flex;
+    line-height: 60px;
+    padding: 0 40px;
+    justify-content: space-between;
+}
+.allType text:nth-child(2) {
+    color: #999;
+    font-size: 28px;
+}
