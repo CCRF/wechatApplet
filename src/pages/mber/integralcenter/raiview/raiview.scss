@@ -1,0 +1,57 @@
+.main {
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  width: auto;
+  height: 400px;
+}
+// 权益区域
+.raiArea {
+  display: inline-block;
+  //float: left;
+  width: 190px;
+  height: 270px;
+  border-radius: 20px;
+  //border: 3px solid red;
+  margin: 15px 0 0 25px;
+  background-image: linear-gradient(#FFEBCD ,lightgray);
+}
+// 权益积分图片区域
+.integralImgArea {
+  position: relative;
+  border-radius:20px;
+  font-size: 25px;
+  width: 150px;
+  color: white;
+  margin: 0 0 -40px 0;
+  background-color: rosybrown;
+  z-index: 1;
+  //border: 3px solid red;
+}
+// 权益积分图片区域下 所需积分区域
+.integralImgArea image {
+  width: 30px;
+  height: 30px;
+}
+// 权益图片区域下 图片
+.raiImgArea image{
+  width: 180px;
+  height: 180px;
+  //border: 3px solid red;
+}
+// 权益名称
+.raiNameArea {
+  font-size: 24px;
+  width: 180px;
+  overflow: hidden;
+  text-overflow:ellipsis; white-space: nowrap;
+}
+// 权益兑换按钮
+.raiBtnArea button{
+  font-size: 18px;
+  width:140px;
+  height: 40px;
+  line-height: 40px;
+  border: 3px solid red;
+  border-radius: 20px;
+}

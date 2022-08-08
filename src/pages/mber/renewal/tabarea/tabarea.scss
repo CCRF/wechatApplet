@@ -1,0 +1,149 @@
+// 月卡区域冒泡框
+.speech-bubble {
+  position: relative;
+  background-color: #FDF5E6;
+
+  width: 95%;
+  height: 150px;
+  line-height: 150px; /* 垂直居中 */
+  color: black;
+  text-align: center;
+  border-radius: 10px;
+  font-family: sans-serif;
+  margin: 25px auto 0 auto;
+  border: 3px solid goldenrod;
+}
+
+.speech-bubble:after {
+  content: '';
+  position: absolute;
+  color:white;
+  width: 0;
+  height: 0;
+
+  border: 15px solid;
+}
+
+.speech-bubble-bottom:after {
+  border-top-color: darkseagreen;
+  top: 100%;
+  left: 50%;
+  margin-left: -15px;
+}
+
+// 月卡文本
+.y-1 {
+  float: left;
+  margin-left: 55px;
+}
+
+// 月卡费用文本
+.y-2 {
+  float: right;
+  margin-right: 55px;
+}
+
+// 续费权益内容区域
+.q-a {
+  width: 95%;
+  height: 450px;
+  margin: 30px auto 0 auto;
+  background-color: #FFF5EE;
+  border: 3px solid goldenrod;
+  border-radius: 10px;
+}
+
+// 红包区域
+.h-a {
+  width: 90%;
+  height: 100px;
+  background-color: wheat;
+  border-radius: 20px;
+  margin: 15px auto 0 auto;
+  line-height: 100px;
+}
+
+// 红包数量区域
+.t-ag {
+  float: left;
+  margin-left: 20px;
+  width: 200px;
+  height: 90px;
+}
+
+// 红包区域文本
+.t-g1 {
+  font-weight: bold;
+  font-size: 30px;
+  color: red;
+  margin-left: 10px;
+}
+
+.t-g11 {
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+// 红包图片区域
+.t-g2 {
+  float: left;
+  width: 350px;
+  height: 90px;
+  //border: 3px solid red;
+}
+
+// 红包图片
+.i-g {
+  width: 100px;
+  height: 100px;
+  margin-left: 10px;
+}
+
+// 红包区域上 文本
+.a-ta1 {
+  margin: 10px 0 5px 35px;
+}
+
+// 红包区域下 文本
+.a-ta2 {
+  margin: 10px 0 5px 35px;
+}
+// 支付区域上 文本区域
+.m-c {
+  margin: 10px 0 10px 15px;
+}
+
+// 支付区域上 文本
+.m-c1 {
+  float: right;
+  margin-right: 15px;
+}
+
+// 支付区域
+.p-m {
+  width: 95%;
+  height: 200px;
+  margin: 0 auto;
+  background-color: #FAF0E6;
+  border-radius: 10px;
+  border: 3px solid goldenrod;
+  text-align: center;
+}
+
+// 支付按钮上  文本
+.p-m-t1 {
+  margin: 10px;
+}
+
+// 支付区域按钮
+.pay-btn button {
+  border-radius: 30px;
+  border: 3px solid #DAA520;
+  background-image: linear-gradient(to right,  rgba(255, 250, 240, 0),rgba(210, 180, 150, 0.5),rgba(245, 222,179, 1));
+}
+
+// 支付区域下文本
+.p-m-t2 {
+  margin: 10px;
+  font-size: 25px;
+}

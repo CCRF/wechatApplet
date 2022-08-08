@@ -1,0 +1,38 @@
+// 滑动视图图片
+.img-t {
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  //border: 10px solid red;
+}
+
+// 滑动视图图片区域
+.img-at {
+  position: relative;
+  float: left;
+  width: 100px;
+  margin-left: 48px;
+  text-align: center;
+}
+
+// 滑动视图区域图片下的文本
+.i-hg {
+  position: absolute;
+  top: 100px;
+  font-size: 22px;
+}
+
+// 滑动视图图片
+.img-tt {
+  width: 100px;
+  height: 100px;
+  //border: 3px solid red;
+}
+
+// 滑动视图区域
+.test-h {
+  width: auto;
+  height: 200px;
+  margin-top: 15px;
+  //border: 5px solid red;
+}
