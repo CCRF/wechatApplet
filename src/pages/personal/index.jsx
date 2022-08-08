@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import {View, Text, Button} from '@tarojs/components'
-import TabBar from "../common/tabBar";
+import Taro from "@tarojs/taro";
 
 
 
@@ -40,8 +40,8 @@ class Personal extends Component {
                     // getInfo(res.userInfo, res)
 
 
-                    // var url = 'https://g1.glypro19.com/wx/login'
-                    var url = 'http://localhost:8090/wx/login'
+                    var url = 'https://g1.glypro19.com/wx/login'
+                    // var url = 'http://localhost:8090/wx/login'
                     wx.showLoading({title:"登录中", mask:"true"})
 
                     wx.login({
@@ -67,6 +67,9 @@ class Personal extends Component {
                                         console.log(res3.data);
                                         that.state.sessionKey = res3.data.data.sessionKey;
                                         that.state.openId = res3.data.data.openId;
+                                        Taro.setStorageSync("aaa","a");
+                                        const a = Taro.getStorageSync("aaa")
+                                        console.log("bbbbbbbbbb",a)
                                         if (res3.data.code === 200){
                                             let userInfo = Object.assign(res1, res3.data)
                                             console.log("登录成功！")
@@ -102,7 +105,8 @@ class Personal extends Component {
             console.log(e.detail.errMsg == "getPhoneNumber:ok");
             if (e.detail.errMsg == "getPhoneNumber:ok") {
                 wx.request({
-                    url: 'http://localhost:8090/wx/getPhoneNumber',
+                    // url: 'http://localhost:8090/wx/getPhoneNumber',
+                    url: 'https://g1.glypro19.com/wx/getPhoneNumber',
                     data: {
                         encryptedData: e.detail.encryptedData,
                         iv: e.detail.iv,
@@ -127,7 +131,6 @@ class Personal extends Component {
                 <View><Text>个人信息展示</Text></View>
                 <Button onClick={getUserProfile1}>测试</Button>
                 <Button openType={"getPhoneNumber"} onGetPhoneNumber={getPhoneNumber} >绑定手机</Button>
-                <TabBar tabBarCurrent={3}/>
             </View>
         )
     }

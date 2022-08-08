@@ -83,7 +83,8 @@ class Index extends Component {
     } else {
       // 弹出提示框，提示今天已签
       this.setState({
-        toastSign: true
+        toastSign: true,
+        toastConversion: false,
       })
     }
   }
@@ -95,9 +96,10 @@ class Index extends Component {
       if (item.raiId === raiItem.raiId) {
         // 弹出提示框是否兑换
         this.setState({
+          toastConversion: false,
           requiredIntegral: raiItem.integral,
           modelOpened: true,
-          toastConversion: false
+          toastSign: false,
         })
       }
     })
@@ -143,7 +145,7 @@ class Index extends Component {
               <View><Text>连签7天额外领取50积分</Text></View>
             </View>
             <View className="signInBtnArea"><Button onClick={this.signIn}>立即签到</Button></View>
-            <AtToast isOpened={this.state.toastSign} text="今天已签"/>
+            <AtToast isOpened={this.state.toastSign} text={ this.state.toastSign === true ? "今天已签" : "签到成功"}/>
           </View>
           <SignInView/>
         </View>
