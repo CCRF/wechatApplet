@@ -4,6 +4,7 @@ import { AtList, AtListItem } from "taro-ui"
 import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from "taro-ui"
 import Icon from "../../../image/members/hha.png"
 import "./index.scss"
+import Taro from "@tarojs/taro";
 class Index extends Component {
 
   constructor(props) {
@@ -40,6 +41,12 @@ class Index extends Component {
     console.log(e)
   }
 
+  changeToPhoneDetail = () => {
+    Taro.navigateTo({
+      url: "./phonenumber/index"
+    })
+  }
+
   render () {
     const isOpened = this.state.isOpened
     return (
@@ -49,7 +56,7 @@ class Index extends Component {
           <View className="test-ha" ><Image src={Icon}/></View>
           <AtListItem title='用户名' note='描述信息' />
           <AtListItem title='账号密码' note='描述信息' arrow='right' />
-          <AtListItem title='手机号' note='描述信息' arrow='right' />
+          <AtListItem onClick={this.changeToPhoneDetail} title='手机号' note='描述信息' arrow='right' />
           <AtListItem title='微信账号' note='描述信息' arrow='right' />
           <AtListItem title='微信账号' note='描述信息' arrow='right' />
           <AtListItem title='注销账号' note='描述信息' arrow='right' />

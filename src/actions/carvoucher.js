@@ -1,38 +1,22 @@
 import {
-  CARD_INFO
+  CARD_INFO, GER_LIMIT_GOODS
 } from "../constants/carvoucher"
-import cardVoucherImg from "../image/members/cardVoncher.png";
-
-let data = {
-  cardVoucherInfo: [
-    {
-      img: cardVoucherImg,
-      name: "买一送一",
-      dated: "2022.08.26"
-    },
-    {
-      img: cardVoucherImg,
-      name: "买一送一",
-      dated: "2022.08.26"
-    },
-    {
-      img: cardVoucherImg,
-      name: "买一送一",
-      dated: "2022.08.26"
-    },
-    {
-      img: cardVoucherImg,
-      name: "买一送一",
-      dated: "2022.08.26"
-    },
-  ]
-}
+import Taro from "@tarojs/taro";
 
 export const getCardVoucherInfo = () => {
   return (dispatch) => {
-    dispatch({type:  CARD_INFO, data: data})
+    Taro.request({
+      url: 'http://localhost:8090/wx/getLimitGoods',
+      data: {openId:15},
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        dispatch({type: CARD_INFO, data: res.data.data})
+      }
+    })
+    // dispatch({type:  CARD_INFO, data: data})
   }
-
 }
 
 
