@@ -1,7 +1,8 @@
-import {CARD_INFO} from "../constants/carvoucher"
+import {CARD_INFO, GER_LIMIT_GOODS} from "../constants/carvoucher"
 
 const INITIAL_STATE = {
-  cardVoucherInfo: []
+  cardVoucherInfo: [],
+  limitGoods: []
 }
 
 export default function cardVoucher (state = INITIAL_STATE,action) {
@@ -10,7 +11,12 @@ export default function cardVoucher (state = INITIAL_STATE,action) {
     case CARD_INFO:
       return {
         ...state,
-        cardVoucherInfo: data.cardVoucherInfo
+        cardVoucherInfo: data
+      }
+    case GER_LIMIT_GOODS:
+      return {
+        ...state,
+        limitGoods: data
       }
     default:
       return state

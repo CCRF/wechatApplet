@@ -3,6 +3,7 @@ import {View, Text,Image,Button} from "@tarojs/components"
 import "./cardvouncher.scss"
 class CardVoucher extends Component {
   render() {
+    // console.log("真拿到了吗",this.props.cardVoucherInfo)
     return (
       <View>
         {this.props.cardVoucherInfo.map((item,index) => {
@@ -10,13 +11,13 @@ class CardVoucher extends Component {
             <View>
               <View className="gap"/>
               <View className="main">
-                <Image src={item.img}/>
+                <Image onClick={this.props.showDetail.bind(this,item)} src={item.voucherUrl}/>
                 <View className="cardVoucherArea">
-                  <Text>{item.name}</Text>
-                  <Text>截止时间: </Text>
-                  <Text>{item.dated}</Text>
-                  <Text>VIP专享</Text>
-                  <View className="immediatelyBtn"><Button>立即使用</Button></View>
+                  <Text>{item.voucherName}</Text>
+                  <View>截止时间:</View>
+                  <View>{item.voucherDated}</View>
+                  <View>VIP专享</View>
+                  <View className="immediatelyBtn"><Button onClick={this.props.conversion.bind(this,item)}>立即使用</Button></View>
                 </View>
               </View>
             </View>
