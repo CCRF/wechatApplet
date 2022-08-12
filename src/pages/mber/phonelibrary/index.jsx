@@ -49,17 +49,30 @@ class Index extends Component {
 
   render () {
     const isOpened = this.state.isOpened
+    const icon = Taro.getStorageSync("personalInfo").avatar
+    const wxName = Taro.getStorageSync("personalInfo").nickName
+    // 手机号预处理
+    const phoneNumber = Taro.getStorageSync("personalInfo").phoneNumber
+    const prePhoneNumber = phoneNumber.substring(0,3)
+    const afterPhoneNumber = phoneNumber.substring(phoneNumber.length - 4,phoneNumber.length)
+    const phone = "手机号：" + prePhoneNumber + "******" + afterPhoneNumber
+
+    console.log("能否拿到数据",Taro.getStorageSync("personalInfo"))
     return (
       <View>
         <AtList >
-          <AtListItem arrow='right' note='描述信息' title='头像'/>
-          <View className="test-ha" ><Image src={Icon}/></View>
-          <AtListItem title='用户名' note='描述信息' />
-          <AtListItem title='账号密码' note='描述信息' arrow='right' />
-          <AtListItem onClick={this.changeToPhoneDetail} title='手机号' note='描述信息' arrow='right' />
-          <AtListItem title='微信账号' note='描述信息' arrow='right' />
-          <AtListItem title='微信账号' note='描述信息' arrow='right' />
-          <AtListItem title='注销账号' note='描述信息' arrow='right' />
+          <AtListItem arrow='right' title='头像'/>
+          <View className="test-ha" ><Image src={icon}/></View>
+          <AtListItem title={wxName} />
+          {
+            phoneNumber === "" ? (
+                <AtListItem onClick={this.changeToPhoneDetail} title="?????" note='未绑定手机号' arrow='right' />
+                // <AtListItem onClick={this.changeToPhoneDetail}  title={phone}  arrow='right' />
+            ) : (
+                <AtListItem onClick={this.changeToPhoneDetail}  title={phone}  arrow='right' />
+                // <AtListItem onClick={this.changeToPhoneDetail} title="?????" note='未绑定手机号' arrow='right' />
+            )
+          }
         </AtList>
         <View className="exitArea"><Button onClick={this.withDrawFromTheAccount}>退出当前账号</Button></View>
         <View>

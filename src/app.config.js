@@ -31,26 +31,26 @@ export default defineAppConfig({
         list: [{
             pagePath: "pages/index/index",
             text: "首页",
-            iconPath: "./asset/images/index.png",
-            selectedIconPath: "./asset/images/index_focus.png"
+            iconPath: "./image/members/index.png",
+            selectedIconPath: "./image/members/index_focus.png"
         },
             {
                 pagePath: "pages/ordering/index",
                 text: "点餐",
-                iconPath: "./asset/images/discovery.png",
-                selectedIconPath: "./asset/images/discovery_focus.png"
+                iconPath: "./image/members/discovery.png",
+                selectedIconPath: "./image/members/discovery_focus.png"
             },
             {
                 pagePath: "pages/order/index",
                 text: "订单",
-                iconPath: "./asset/images/discovery.png",
-                selectedIconPath: "./asset/images/discovery_focus.png"
+                iconPath: "./image/members/discovery.png",
+                selectedIconPath: "./image/members/discovery_focus.png"
             },
             {
                 pagePath: "pages/mber/member",
                 text: "我的",
-                iconPath: "./asset/images/burger.png",
-                selectedIconPath: "./asset/images/burger_focus.png"
+                iconPath: "./image/members/burger.png",
+                selectedIconPath: "./image/members/burger_focus.png"
             }]
     },
     // subPackages: [

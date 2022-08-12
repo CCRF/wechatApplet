@@ -2,10 +2,10 @@ import {Component} from "react"
 import {Button, Image, Text, View} from "@tarojs/components";
 import MySwiper from "../swiperitem/myswiper"
 import Hongbao from "../../../../image/members/红包.png";
-import T1 from "../../../../asset/images/24280.jpg";
-import T2 from "../../../../asset/images/burger_focus.png";
-import T3 from "../../../../asset/images/eye.png";
-import T4 from "../../../../asset/images/heart2.png";
+import T1 from "../../../../image/members/gift1.jpg"
+import T2 from "../../../../image/members/gift2.jpg"
+import T3 from "../../../../image/members/gift2.jpg"
+import T4 from "../../../../image/members/gift2.jpg"
 import "./tabarea.scss"
 
 class TabArea extends Component {
