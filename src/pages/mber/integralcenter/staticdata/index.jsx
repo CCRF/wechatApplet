@@ -1,4 +1,4 @@
-import integralIcon from "../../../image/members/积分-实色.png";
+import integralIcon from "../../../../image/members/积分-实色.png"
 export const raiList = [
   {
     raiId: 1,

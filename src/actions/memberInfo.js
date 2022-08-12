@@ -1,15 +1,15 @@
 import {
   GET_INFO
 } from "../constants/memberInfo"
+import Taro from "@tarojs/taro";
 
 let data = {
   Info:{
-    phone: "2222222222222",
-    isMember: true,
-    level: "Lv3",
+    phone: Taro.getStorageSync("personalInfo").phoneNumber,
+    wxName: Taro.getStorageSync("personalInfo").nickName,
+    avatar: Taro.getStorageSync("personalInfo").avatar,
+    isMember: 2,
     dated:"2022.09.29",
-    isRenewal: "不自动续费",
-    Renewal: "立即续费",
     payed: "12223",
   }
 }
@@ -17,7 +17,17 @@ let data = {
 export const getInfo = () => {
   // 可以在这里进行数据接收处理
   return (dispatch) => {
-    console.log("action")
+    // Taro.request({
+    //   url: 'http://localhost:8090/wx/getCustomerIntegral',
+    //   data: {openId:15},
+    //   header: {
+    //     'content-type': 'application/json'
+    //   },
+    //   success: function (data) {
+    //     dispatch({type: GET_INFO, data: data})
+    //   }
+    // })
+    // console.log("actionInfo",data)
     dispatch({type: GET_INFO, data: data})
   }
 }

@@ -2,6 +2,7 @@ import {Component} from "react"
 import {connect} from "react-redux"
 import {ScrollView, View, Text, Image, Button} from "@tarojs/components"
 import {AtModal, AtNoticebar, AtToast} from 'taro-ui'
+import {raiList} from "./staticdata/index"
 import RaiView from "./raiview/raiview"
 import SignInView from "./signinview/signinview";
 import integralIcon from "../../../image/members/积分-实色.png";
@@ -11,14 +12,16 @@ import {
   subtractIntegral,
   addIntegral,
   getInitIntegral,
-  initSignInStatus
+  initSignInStatus,
+  updateSignInStatus
 } from "../../../actions/integralcenter";
 
 @connect(({integralCenter}) => ({integralCenter}), {
   subtractIntegral,
   addIntegral,
   getInitIntegral,
-  initSignInStatus
+  initSignInStatus,
+  updateSignInStatus
 })
 class Index extends Component {
 
@@ -27,6 +30,8 @@ class Index extends Component {
     this.props.getInitIntegral()
     this.props.initSignInStatus()
     this.state = {
+      // 积分是否足够
+      isConversion: false,
       // 兑换权益所需积分
       requiredIntegral: 0,
       // 模态框是否显示
@@ -35,58 +40,46 @@ class Index extends Component {
       toastConversion: false,
       // 签到状态提示框
       toastSign: false,
-      raiList: [
-        {
-          raiId: 1,
-          img: integralIcon,
-          name: "爱奇艺VIP会员黄金季卡",
-          integral: "288",
-        },
-        {
-          raiId: 2,
-          img: integralIcon,
-          name: "爱奇艺VIP会员黄金季卡",
-          integral: "298"
-        },
-        {
-          raiId: 3,
-          img: integralIcon,
-          name: "爱奇艺VIP会员黄金季卡",
-          integral: "308"
-        },
-        {
-          raiId: 4,
-          img: integralIcon,
-          name: "爱奇艺VIP会员黄金季卡",
-          integral: "318"
-        },
-        {
-          raiId: 5,
-          img: integralIcon,
-          name: "爱奇艺VIP会员黄金季卡",
-          integral: "328"
-        }
-      ]
+      // 是否已签
+      isSign: false,
+      raiList: raiList,
     }
   }
-
 
   // 签到
   signIn = () => {
     const signInStatus = this.props.integralCenter.signInStatus
-    const weekDay = new Date().getDate()
-    console.log("签到状态：", signInStatus[weekDay - 1])
+    const weekDay = new Date().getDay()
+
     // 判断今天是否已签 0未签，1已签
     if (signInStatus[weekDay - 1] === 0) {
-      // 是未签，发送积分增加请求
-      this.props.addIntegral()
-    } else {
-      // 弹出提示框，提示今天已签
+      // 提示框变为签到成功文本
       this.setState({
-        toastSign: true,
-        toastConversion: false,
+        isSign: true
+      })
+      // 发送积分增加请求
+      this.props.addIntegral()
+      // 并修改积分签到状态
+      signInStatus[weekDay - 1] = 1
+      this.props.updateSignInStatus(signInStatus.toString())
+    } else {
+      // 提示框变为今天已签文本
+      this.setState({
+        isSign: false
       })
     }
+
+    // 弹出签到提示框
+    this.setState({
+      toastSign: true,
+    })
+    // 2秒后关闭提示框
+    setTimeout(() => {
+      console.log("2秒后关闭")
+      this.setState({
+        toastSign: false
+      })
+    }, 2000)
   }
 
   // e对象放后面，前面参数对应传入值的顺序
@@ -96,10 +89,8 @@ class Index extends Component {
       if (item.raiId === raiItem.raiId) {
         // 弹出提示框是否兑换
         this.setState({
-          toastConversion: false,
           requiredIntegral: raiItem.integral,
           modelOpened: true,
-          toastSign: false,
         })
       }
     })
@@ -114,19 +105,42 @@ class Index extends Component {
 
   // 模态框确认按钮
   handleConfirm = () => {
-    // 个人积分相应减少
-    this.props.subtractIntegral(this.state.requiredIntegral)
+    console.log("是否能兑换",this.state.isConversion)
+    const isConversion = this.props.integralCenter.personIntegral < this.state.requiredIntegral
+    if (isConversion) {
+      // 显示 提示积分不足
+      this.setState({
+        isConversion: false
+      })
+
+    } else {
+
+      // 显示 提示兑换成功
+      this.setState({
+        isConversion: true
+      })
+      // 个人积分相应减少
+      this.props.subtractIntegral(this.state.requiredIntegral)
+    }
+
     this.setState({
       modelOpened: false,
       toastConversion: true
     })
+
+    // 2秒后关闭提示框
+    setTimeout(() => {
+      console.log("2秒后关闭")
+      this.setState({
+        toastConversion: false
+      })
+    }, 2000)
   }
 
 
   render() {
-
     const personalIntegral = this.props.integralCenter.personIntegral
-
+    console.log("个人积分",personalIntegral)
     return (
       <View className="body">
         <View className="header">
@@ -145,7 +159,7 @@ class Index extends Component {
               <View><Text>连签7天额外领取50积分</Text></View>
             </View>
             <View className="signInBtnArea"><Button onClick={this.signIn}>立即签到</Button></View>
-            <AtToast isOpened={this.state.toastSign} text={ this.state.toastSign === true ? "今天已签" : "签到成功"}/>
+            <AtToast isOpened={this.state.toastSign} text={ this.state.isSign === true ? "签到成功" : "今天已签"}/>
           </View>
           <SignInView/>
         </View>
@@ -171,7 +185,13 @@ class Index extends Component {
               raiList={this.state.raiList}
               conversion={this.conversion}
             />
-            <AtToast isOpened={this.state.toastConversion} status="success" text="兑换成功"/>
+            {
+              this.state.isConversion === false ? (
+                  <AtToast isOpened={this.state.toastConversion} status="success" text="积分不足"/>
+              ) : (
+                  <AtToast isOpened={this.state.toastConversion} status="success" text="兑换成功"/>
+              )
+            }
           </ScrollView>
         </View>
         <View>

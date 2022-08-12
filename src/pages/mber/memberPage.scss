@@ -24,15 +24,11 @@
 // 头部区域电话
 .phone {
   font-size: 38px;
+  width:400px;
 }
 // 头部区域会员过期时间
 .dated {
   font-size: 20px;
-}
-// 头部区域会员是否续费
-.isRenewal {
-  font-size: 20px;
-  margin-left: 20px;
 }
 // 头部区域（电话，到期，是否续费）
 .mInfo {

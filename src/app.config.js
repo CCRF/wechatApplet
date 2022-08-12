@@ -9,6 +9,7 @@ export default defineAppConfig({
         'pages/mber/cardvouchercenter/index',
         'pages/mber/phonelibrary/index',
         'pages/mber/integralcenter/index',
+        'pages/mber/phonelibrary/phonenumber/index',
         'pages/order/index',
         'pages/order/theCurrentOrder',
         'pages/order/theHistoryOrder',

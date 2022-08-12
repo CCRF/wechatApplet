@@ -5,7 +5,7 @@ const INITIAL_STATE = {
 }
 export default function memberPage(state = INITIAL_STATE, action) {
   let {type,data} = action
-  console.log("大数据aaa",data);
+  // console.log("大数据aaa",data);
   switch (type) {
     case GET_INFO:
       return {
