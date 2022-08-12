@@ -36,16 +36,18 @@ export const findAllType=()=>{
 
 //获得所有套餐的信息
 export const findCombo=()=>{
-    Taro.request({
-        url: 'https://g1.glypro19.com/wx/findCombo',
-        data: {},
-        header: {
-            'content-type': 'application/json'
-        },
-        success: function (res) {
-            console.log(res.data)
-        }
-    })
+    return dispatch=>{
+        Taro.request({
+            url: 'https://g1.glypro19.com/wx/findCombo',
+            data: {},
+            header: {
+                'content-type': 'application/json'
+            },
+            success: function (res) {
+                dispatch({type:'findCombo',data:res.data.data})
+            }
+        })
+    }
 }
 
 //将购买的订单信息传送到后台

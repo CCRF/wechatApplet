@@ -15,7 +15,7 @@ export default defineAppConfig({
         'pages/order/theHistoryOrder',
         'pages/ordering/index',
         'pages/personal/index',
-
+        'pages/orderPayment/index'
     ],
     window: {
         backgroundTextStyle: 'light',

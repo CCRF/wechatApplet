@@ -7,6 +7,8 @@ import historyOrder from "./historyOrder";
 import memberPage from "./memberInfo"
 import cardVoucher from "./cardvoucher"
 import integralCenter from "./integralcenter"
+import orderingCombo from"./orderingCombo"
+import orderingPayment from "./orderingPayment";
 
 export default combineReducers({
   counter,
@@ -17,4 +19,6 @@ export default combineReducers({
   memberPage,
   cardVoucher,
   integralCenter,
+  orderingCombo,
+  orderingPayment,
 })
