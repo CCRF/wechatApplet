@@ -19,12 +19,13 @@ import {getInfo} from "../../actions/memberInfo";
 //     dispatch(getInfo())
 //   }
 // }))
-@connect(({memberPage}) => ({memberPage}), {getInfo})
+// @connect(({memberPage}) => ({memberPage}), {getInfo})
 class MemberPage extends Component {
     constructor(props) {
         super(props);
-        this.props.getInfo()
+        // this.props.getInfo()
         this.state = {
+            info: this.props.Info,
             show: false,
             KFCGift: {
                 gift1: Gift1,
@@ -117,9 +118,14 @@ class MemberPage extends Component {
 
 
     render() {
-        const list = this.props.memberPage.Info
+        // const list = this.props.memberPage.Info
+        const list = this.state.info
 
-        const phone = Taro.getStorageSync("personalInfo").phoneNumber
+        // 手机号预处理
+        const phoneNumber = Taro.getStorageSync("personalInfo").phoneNumber
+        const prePhoneNumber = phoneNumber.substring(0,3)
+        const afterPhoneNumber = phoneNumber.substring(phoneNumber.length - 4,phoneNumber.length)
+        const phone = prePhoneNumber + "******" + afterPhoneNumber
 
         console.log("memberPage信息1", list)
 
@@ -128,7 +134,16 @@ class MemberPage extends Component {
                 <View className="header">
                     <Image className="Logo" src={Logo}/>
                     <View className="mInfo">
-                        <View className="phone">手机号：{phone}</View>
+                        {
+                            phoneNumber === "" ? (
+                                <View className="phone">手机号：未绑定</View>
+                                // <View className="phone">手机号：{phone}</View>
+                            ) : (
+                                <View className="phone">手机号：{phone}</View>
+                                // <View className="phone">手机号：未绑定</View>
+                            )
+                        }
+
                         {
                             list.isMember === 0 ? (
                                 <Text className="dated">会员已过期 </Text>
@@ -192,4 +207,11 @@ class MemberPage extends Component {
     }
 }
 
-export default MemberPage
+// export default MemberPage
+
+const getData = state => {
+    return {
+        Info: state.memberPage.Info
+    }
+}
+export default connect(getData)(MemberPage)

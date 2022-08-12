@@ -1,11 +1,8 @@
 import {Component} from 'react'
 import {Image, ScrollView, Text, View} from '@tarojs/components'
-import TabBar from "../common/tabBar";
 import './ongoingCard.scss'
-
 import {connect} from "react-redux";
 import {getHistoryOrder} from "../../actions/historyOrder";
-import {AtAccordion, AtActionSheet, AtButton, AtIcon, AtList, AtListItem, AtRate} from "taro-ui";
 import Taro from "@tarojs/taro";
 
 

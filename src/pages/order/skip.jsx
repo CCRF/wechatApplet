@@ -1,9 +1,5 @@
-import Taro from "@tarojs/taro";
 import {Component} from "react"
-import { connect } from 'react-redux'
 import {ScrollView, Swiper, SwiperItem, Image, Text, View, Button} from "@tarojs/components"
-import {AtGrid} from "taro-ui"
-import {Order} from "./index"
 import './skip.scss'
 
 import OngoingCard from "./ongoingCard";
