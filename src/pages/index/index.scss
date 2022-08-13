@@ -1,3 +1,11 @@
+.login{
+  width: 100%;
+  text-align: right;
+}
+.loginName{
+  font-size: 35px;
+}
+
 /*顶部SwiperView的设置*/
 .swiperImg {
   width: 100%;
@@ -5,13 +13,15 @@
   position: sticky;
   top: 1px;
   z-index: 5;
+  background-color: rgba(194,3,41,0.9);
+
 }
 
 /*顶部swiper图片的设置*/
 .viewImage {
-  width: 450px;
+  width: 600px;
   height:270px;
-  margin-left: 160px;
+  margin-left: 80px;
 }
 .tip{
   position: absolute;
@@ -39,6 +49,11 @@
   color: black;
 }
 .pageBom{
-
+  margin-top: 250px;
+  margin-left: 2%;
+}
+.img1{
+  width: 350px;
+  height: 550px;
 }
 
