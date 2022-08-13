@@ -1,9 +1,44 @@
+//
+///*显示的订单列表*/
+//.allOrder{
+//  padding: 0 40px;
+//  width: 90%;
+//  height: 100%;
+//  border: 3px solid blue;
+//
+//}
+//.P_order_P{
+//  height: 100%;
+//  text-align: center;
+//}
+//
+//.allOrder_noneOrder{
+//
+//  width: 90%;
+//  height: 100%;
+//}
 
-/*显示的订单列表*/
-.allOrder{
-  padding: 0 40px;
-  width: 90%;
+/*无订单时的界面*/
+.noneOrder{
+  height: 950px;
+  display: flex;    /*设置显示样式**/
+  align-items: center;    /**子view垂直居中*/
+  justify-content: center; /**内容居中*/
+  flex-direction:column;
 }
-.P_order_P{
-  text-align: center;
+/*显示的内容*/
+.text1{
+  position: absolute;
+  left: 150px;
+  top: 700px;
+  font-size: 28px;
+}
+/*去点一份的按钮样式*/
+.btn1{
+  position: absolute;
+  left: 260px;
+  top: 750px;
+  margin: 20px;
+  background-color: red;
+  color: white;
 }

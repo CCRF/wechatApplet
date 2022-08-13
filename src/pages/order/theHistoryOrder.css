@@ -1,0 +1,68 @@
+
+.allType{
+    background: #fafafa;
+}
+/*顶部*/
+.view_head{
+    background: url("../../image/order/head_order.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 200px;
+    border: 2px solid blue;
+}
+.view_body{
+    height: auto;
+    border: 2px solid red;
+    padding: 20px;
+    margin: 20px;
+}
+
+
+.text1{
+    position: relative;
+    left: 30px;
+    top: 5px;
+    color: white;
+    font-size: 39px;
+    /*border: 2px solid blue;*/
+}
+.text2{
+    position: relative;
+    top: 120px;
+    left: 220px;
+    color: white;
+    font-size: 30px;
+}
+
+.background-image{
+    height : 100%;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+}
+
+.body_head{
+    background: white;
+    /*border: 1px solid blue;*/
+    margin: 5px;
+    padding: 10px;
+
+}
+
+.text3{
+    color: rgba(0,0,0,0.5);
+    font-size: 30px;
+    border-bottom: 1px dotted rgba(245,245,245,0.8);
+}
+.v1{
+    border-bottom: 1px dotted rgba(245,245,245,0.8);
+}
+
+.body_body{
+    background: white;
+    /*border: 1px solid blue;*/
+    margin: 5px;
+    padding: 10px;
+
+}
