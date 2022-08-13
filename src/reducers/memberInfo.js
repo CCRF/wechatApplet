@@ -1,4 +1,4 @@
-import {GET_INFO} from "../constants/memberInfo"
+import {GET_INFO, UPDATE_PHONE} from "../constants/memberInfo"
 
 const INITIAL_STATE = {
   Info: {}
@@ -8,6 +8,11 @@ export default function memberPage(state = INITIAL_STATE, action) {
   // console.log("大数据aaa",data);
   switch (type) {
     case GET_INFO:
+      return {
+        ...state,
+        Info: data.Info
+      }
+    case UPDATE_PHONE:
       return {
         ...state,
         Info: data.Info

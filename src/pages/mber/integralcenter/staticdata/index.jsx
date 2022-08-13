@@ -9,7 +9,7 @@ export const raiList = [
     img: integralIcon1,
     name: "饮品券",
     integral: "288",
-    voucherRai: "兑换指定饮品",
+    voucherRai: "半价",
     goodsList: [14,15,16,17,19],
   },
   {

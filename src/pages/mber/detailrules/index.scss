@@ -1,0 +1,40 @@
+@import "~taro-ui/dist/style/components/divider.scss";
+@import "~taro-ui/dist/style/components/icon.scss";
+
+.body {
+  background-image: linear-gradient(#00CED1,#D4F2E7);
+}
+
+.body view {
+  margin: 15px 0 15px 15px;
+}
+//.body view nth-child(2){
+//  margin: 15px 0 15px 15px;
+//}
+//.body view nth-child(3){
+//  margin: 15px 0 15px 15px;
+//}
+//.body view nth-child(4){
+//  margin: 15px 0 15px 15px;
+//}
+
+// 细则名称
+.title {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+ //细则内容一
+.oneContent view{
+  margin: 15px 0 15px 50px;
+}
+// 细则内容二
+.twoContent view{
+  margin: 15px 0 15px 50px;
+}
+// 细则内容三
+.threeContent view{
+  margin: 15px 0 15px 50px;
+}
+
