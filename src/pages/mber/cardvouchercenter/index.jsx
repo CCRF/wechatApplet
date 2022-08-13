@@ -1,8 +1,8 @@
 import {Component} from "react"
-import {View, Text} from "@tarojs/components"
+import {View} from "@tarojs/components"
 import CardVoucher from "./cardvoucher/cardvoucher"
 import {connect} from 'react-redux'
-import {AtModal} from "taro-ui"
+import {AtFloatLayout } from "taro-ui"
 import "./index.scss"
 import {getCardVoucherInfo} from "../../../actions/carvoucher";
 
@@ -10,8 +10,9 @@ import {getCardVoucherInfo} from "../../../actions/carvoucher";
 class CardIndex extends Component {
     constructor(props) {
         super(props);
-        this.props.getCardVoucherInfo()
+        // this.props.getCardVoucherInfo()
         this.state = {
+            limitGoods: [],
             voucherName: "",
             detailShow: false,
         }
@@ -21,13 +22,12 @@ class CardIndex extends Component {
     immediatelyConversion = (item, e) => {
         console.log("卡券aaa",item)
         // 获取对应卡券的限定商品，跳转到点餐页
-        console.log("卡券限定商品",item.voucherLimit)
     }
 
     // 点击卡券图片显示限定商品信息
     showDetail = (item, e) => {
         const name = item.voucherName
-        console.log("卡券名称",item.voucherName)
+        this.state.limitGoods = item.voucherLimit
         this.setState({
             voucherName: name,
             detailShow: true,
@@ -36,14 +36,15 @@ class CardIndex extends Component {
 
     // 模态框关闭时操作
     handleClose = () => {
-        this.state({
+        this.setState({
             detailShow: false,
         })
+        console.log("关闭后操作")
     }
-
 
     render() {
         const cardList = this.props.cardVoucher.cardVoucherInfo
+        console.log('卡券信息',cardList)
         return (
             <View className="body">
                 <CardVoucher
@@ -53,16 +54,20 @@ class CardIndex extends Component {
                 />
 
                 <View>
-                    <AtModal
-                        isOpened={this.state.detailShow}
-                        title={this.state.voucherName}
-                        // cancelText='取消'
-                        // confirmText='确认'
-                        closeOnClickOverlay
-                        onCancel={this.handleClose}
-                        // onConfirm={ this.handleConfirm }
-                        content='限定商品说明'
-                    />
+                    <AtFloatLayout isOpened={this.state.detailShow} title={this.state.voucherName} onClose={this.handleClose.bind(this)}>
+                        <View>
+
+                            {this.state.limitGoods.map((item,index) => {
+                                return (
+                                    <View>
+                                        <View>商品名：{item.name}</View>
+                                        <View>价格：{item.price}</View>
+                                    </View>
+                                )
+                            })}
+                        </View>
+                    </AtFloatLayout>
+
                 </View>
             </View>
         )

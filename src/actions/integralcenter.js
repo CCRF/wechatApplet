@@ -18,7 +18,8 @@ let data = {
 export const addIntegral = () => {
     return (dispatch) => {
       Taro.request({
-        url: 'http://localhost:8090/wx/addCustomerIntegral',
+        // url: 'http://localhost:8090/wx/addCustomerIntegral',
+        url: 'https://g1.glypro19.com/wx/addCustomerIntegral',
         method: "POST",
         data: {openId:15,integral: 5},
         header: {
@@ -38,13 +39,14 @@ export const addIntegral = () => {
 export const getInitIntegral = () => {
   return (dispatch) => {
     Taro.request({
-      url: 'http://localhost:8090/wx/getCustomerIntegral',
+      // url: 'http://localhost:8090/wx/getCustomerIntegral',
+      url: 'https://g1.glypro19.com/wx/getCustomerIntegral',
       data: {openId:15},
       header: {
         'content-type': 'application/json'
       },
       success: function (res) {
-        console.log("初始化积分",res.data.data)
+        console.log("初始化积分1",res.data.data)
         dispatch({type: INIT_INTEGRAL, data: res.data.data})
       }
     })
@@ -56,7 +58,8 @@ export const getInitIntegral = () => {
 export const initSignInStatus = () => {
   return (dispatch) => {
     Taro.request({
-      url: 'http://localhost:8090/wx/getCustomerSignInStatus',
+      // url: 'http://localhost:8090/wx/getCustomerSignInStatus',
+      url: 'https://g1.glypro19.com/wx/getCustomerSignInStatus',
       data: {openId:15},
       header: {
         'content-type': 'application/json'
@@ -82,7 +85,8 @@ export const subtractIntegral = (requiredIntegral) => {
   return (dispatch) => {
     // console.log("所需积分",requiredIntegral)
     Taro.request({
-      url: 'http://localhost:8090/wx/reduceCustomerIntegral',
+      // url: 'http://localhost:8090/wx/reduceCustomerIntegral',
+      url: 'https://g1.glypro19.com/wx/reduceCustomerIntegral',
       method: "POST",
       data: {openId:15,integral: requiredIntegral},
       header: {
@@ -100,12 +104,13 @@ export const subtractIntegral = (requiredIntegral) => {
 }
 
 // 更新个人签到状态
-export const updateSignInStatus = (signStatus) => {
+export const updateSignInStatus = (signStatus,signStatusArray) => {
   console.log("更新的签到状态action",signStatus)
   return (dispatch) => {
 
     Taro.request({
-      url: 'http://localhost:8090/wx/updateCustomerSignInStatus',
+      // url: 'http://localhost:8090/wx/updateCustomerSignInStatus',
+      url: 'https://g1.glypro19.com/wx/updateCustomerSignInStatus',
       method: "POST",
       data: {openId:15,signInStatus:signStatus},
       header: {
@@ -113,7 +118,8 @@ export const updateSignInStatus = (signStatus) => {
       },
       success: function (res) {
         console.log("是否更新成功",res.data.msg)
-        dispatch({type: UPDATE_SIGN_IN_STATUS, data: res.data.msg})
+
+        dispatch({type: UPDATE_SIGN_IN_STATUS, data: signStatusArray})
       }
     })
 

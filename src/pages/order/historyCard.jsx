@@ -5,7 +5,6 @@ import './historyCard.scss'
 
 import {connect} from "react-redux";
 import {getHistoryOrder} from "../../actions/historyOrder";
-import {AtAccordion, AtActionSheet, AtButton, AtIcon, AtList, AtListItem, AtRate} from "taro-ui";
 import Taro from "@tarojs/taro";
 
 

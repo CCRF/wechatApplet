@@ -1,0 +1,105 @@
+.main {
+    width: 95%;
+    height: auto;
+    margin: 20px;
+    background-color: #f3f2f2;
+    border-radius: 20px;
+}
+
+.food {
+    width: 94%;
+    height: 170px;
+    margin-left: 3%;
+    background-color: #fffdfd;
+    margin-top: 4px;
+    border:1px solid #e5e4e4;
+}
+
+.img {
+    margin-top: 10px;
+    width: 200px;
+    height: 150px;
+}
+
+.food .foodName {
+    width: 440px;
+    height: 60px;
+    margin-left: 215px;
+    margin-top: -160px;
+    /*background-color: crimson;*/
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 60px;
+}
+
+.contain {
+    width: 330px;
+    height: 40px;
+    margin-left: 215px;
+    /*background-color: cornflowerblue;*/
+    font-size: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.num {
+    width: 50px;
+    height: 50px;
+    /*background-color: darkcyan;*/
+    margin-left: 215px;
+    margin-top: 10px;
+}
+
+.price {
+    width: 125px;
+    height: 70px;
+    margin-left: 536px;
+    margin-top: -70px;
+    /*background-color: darkgoldenrod;*/
+    text-align: right;
+}
+/*可用券和红包*/
+.red{
+    width:94%;
+    height: 70px;
+    margin-left: 3%;
+    background-color: darkcyan;
+    line-height: 70px;
+}
+.Vouchers{
+    width:94%;
+    height: 70px;
+    margin-left: 3%;
+    background-color: darkgray;
+    line-height: 70px;
+}
+.pay{
+    width: 94%;
+    height: 100px;
+    bottom: 35px;
+    position: fixed;
+    margin-left: 3%;
+    border-radius: 50px;
+    background-color: #dcdcdc;
+}
+.goBack{
+    position: absolute;
+    width:50%;
+    height: 100px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    text-align: center;
+    line-height: 100px;
+}
+.payment{
+    position: absolute;
+    width: 50%;
+    height: 100px;
+    margin-left: 50%;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    text-align: center;
+    line-height: 100px;
+    background-color: #e7103a;
+}

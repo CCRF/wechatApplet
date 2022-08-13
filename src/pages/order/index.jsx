@@ -4,7 +4,6 @@ import './index.scss'
 
 
 import Skip from './skip'
-import taro from "@tarojs/taro-h5/dist/index.esm";
 
 class Home extends Component {
 

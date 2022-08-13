@@ -1,1 +1,59 @@
+.login{
+  width: 100%;
+  text-align: right;
+}
+.loginName{
+  font-size: 35px;
+}
+
+/*顶部SwiperView的设置*/
+.swiperImg {
+  width: 100%;
+  height: 250px;
+  position: sticky;
+  top: 1px;
+  z-index: 5;
+  background-color: rgba(194,3,41,0.9);
+
+}
+
+/*顶部swiper图片的设置*/
+.viewImage {
+  width: 600px;
+  height:270px;
+  margin-left: 80px;
+}
+.tip{
+  position: absolute;
+  margin-left: 2%;
+  margin-top: 30px;
+}
+.order{
+  position: absolute;
+  margin-top: 100px;
+  margin-left: 2%;
+  width: 96%;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  background-color: crimson;
+  border-radius: 50px;
+  color: white;
+  letter-spacing: 7px;
+  font-weight: bold;
+}
+.shopIcon{
+  margin-top: -5px;
+  margin-left: -10px;
+  padding-right: 50px;
+  color: black;
+}
+.pageBom{
+  margin-top: 250px;
+  margin-left: 2%;
+}
+.img1{
+  width: 350px;
+  height: 550px;
+}
 
