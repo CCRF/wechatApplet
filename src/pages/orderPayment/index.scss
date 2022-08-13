@@ -1,6 +1,14 @@
+// 浮动弹层样式
+@import "~taro-ui/dist/style/components/float-layout.scss";
+// 轻提示样式
+@import "~taro-ui/dist/style/components/toast.scss";
+@import "~taro-ui/dist/style/components/icon.scss";
+
+
 .main {
     width: 95%;
-    height: auto;
+    height: 1050px;
+    overflow: scroll;
     margin: 20px;
     background-color: #f3f2f2;
     border-radius: 20px;
@@ -58,21 +66,6 @@
     margin-top: -70px;
     /*background-color: darkgoldenrod;*/
     text-align: right;
-}
-/*可用券和红包*/
-.red{
-    width:94%;
-    height: 70px;
-    margin-left: 3%;
-    background-color: darkcyan;
-    line-height: 70px;
-}
-.Vouchers{
-    width:94%;
-    height: 70px;
-    margin-left: 3%;
-    background-color: darkgray;
-    line-height: 70px;
 }
 .pay{
     width: 94%;

@@ -1,6 +1,6 @@
 import {
   ADD_CARD,
-  CARD_INFO, GER_LIMIT_GOODS
+  CARD_INFO, GER_LIMIT_GOODS, REDUCE_CARD
 } from "../constants/carvoucher"
 import Taro from "@tarojs/taro";
 
@@ -28,8 +28,8 @@ export const addCardVoucherInfo = (voucher) => {
   // 解析卡券信息，保存到数据库
   return (dispatch) => {
     Taro.request({
-      // url: 'https://g1.glypro19.com/wx/getLimitGoods',
-      url: 'http://localhost:8090/wx/addCustomerCardVoucher',
+      url: 'https://g1.glypro19.com/wx/getLimitGoods',
+      // url: 'http://localhost:8090/wx/addCustomerCardVoucher',
       method: "POST",
       data: {
         "voucherId": voucher.voucherId,
@@ -49,6 +49,25 @@ export const addCardVoucherInfo = (voucher) => {
       }
     })
     // dispatch({type:  ADD_CARD, data: item})
+  }
+}
+
+// 卡券减少
+export const reduceCardVoucherInfo = (voucherId) => {
+    return (dispatch) => {
+      Taro.request({
+        // url: 'http://localhost:8090/wx/deleteCustomerCardVoucher',
+        url: 'https://g1.glypro19.com/wx/getLimitGoods',
+        method: "POST",
+        data: {voucherId:voucherId},
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success: function (res) {
+          console.log("卡券是否删除成功",res.data.msg)
+          dispatch({type: REDUCE_CARD, data: res.data.msg})
+        }
+      })
   }
 }
 

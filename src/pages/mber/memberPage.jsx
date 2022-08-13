@@ -3,6 +3,7 @@ import {Component} from "react"
 import {connect} from 'react-redux'
 import {ScrollView, Swiper, SwiperItem, Image, Text, View, Button} from "@tarojs/components"
 import {AtGrid} from "taro-ui"
+import {checkPhone} from "./util/phoneutil";
 import Logo from "../../image/members/hha.png"
 import Gift1 from "../../image/members/gift1.jpg"
 import Gift2 from "../../image/members/gift2.jpg"
@@ -19,7 +20,7 @@ import {getInfo} from "../../actions/memberInfo";
 //     dispatch(getInfo())
 //   }
 // }))
-// @connect(({memberPage}) => ({memberPage}), {getInfo})
+@connect(({memberPage}) => ({memberPage}), {getInfo})
 class MemberPage extends Component {
     constructor(props) {
         super(props);
@@ -65,6 +66,14 @@ class MemberPage extends Component {
             ]
         }
     }
+
+    // componentWillReceiveProps(nextProps){
+    //     console.log("随着props不同刷新界面")
+    //     this.setState({
+    //         ...nextProps
+    //     })
+    // }
+
 
     // 立即续费
     Renewal = () => {
@@ -121,13 +130,11 @@ class MemberPage extends Component {
         // const list = this.props.memberPage.Info
         const list = this.state.info
 
-        // 手机号预处理
-        const phoneNumber = Taro.getStorageSync("personalInfo").phoneNumber
-        const prePhoneNumber = phoneNumber.substring(0,3)
-        const afterPhoneNumber = phoneNumber.substring(phoneNumber.length - 4,phoneNumber.length)
-        const phone = prePhoneNumber + "******" + afterPhoneNumber
-
-        console.log("memberPage信息1", list)
+        // 查看该用户是否绑定手机
+        const phoneNumberFromStorage = Taro.getStorageSync("personalInfo").phoneNumber
+        console.log("页面刷新个人信息",Taro.getStorageSync("personalInfo"))
+        const phone = checkPhone(phoneNumberFromStorage)
+        console.log("我的界面检查手机号：",phone)
 
         return (
             <View className="main">
@@ -135,8 +142,8 @@ class MemberPage extends Component {
                     <Image className="Logo" src={Logo}/>
                     <View className="mInfo">
                         {
-                            phoneNumber === "" ? (
-                                <View className="phone">手机号：未绑定</View>
+                            phone === "" ? (
+                                <View className="phone">手机号{phone}</View>
                                 // <View className="phone">手机号：{phone}</View>
                             ) : (
                                 <View className="phone">手机号：{phone}</View>
