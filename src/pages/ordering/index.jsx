@@ -126,7 +126,6 @@ class HotSpot extends Component {
             sheetPrice: combo.price,
             sheetIsSale: ''
         })
-        console.log("点击套餐")
     }
 
 
@@ -187,10 +186,7 @@ class HotSpot extends Component {
         } else {
             console.log("没有该餐品")
         }
-        console.log("第一次点击时的商品名称", this.state.foodAddName)
-        console.log("加入购物车")
     }
-
 
     //套餐加入购物车
     addComboFood = (combofood, e) => {
@@ -297,7 +293,6 @@ class HotSpot extends Component {
             count: this.state.count + 1,
             totalPrice: this.state.totalPrice + this.state.sheetPrice,
         })
-        console.log("弹出层的信息", this.state.shoppingObj)
     }
 
 
@@ -324,14 +319,12 @@ class HotSpot extends Component {
 
     //数量加
     addNum = (food, e) => {
+        e.stopPropagation()
         const num = food.foodNum + 1
         const obj = Object.assign(food, {foodNum: num})
         // console.log("新更新的",food.foodNum)
-        console.log("加法的",typeof food.shoppingPrice)
-        console.log("加法的综合金额",typeof this.state.totalPrice)
         let price=food.shoppingPrice;
         price=parseFloat(price)
-        console.log(typeof price)
         this.setState({
             count: this.state.count + 1,
             totalPrice: this.state.totalPrice + price,
@@ -342,17 +335,15 @@ class HotSpot extends Component {
     minusNum = (food, e) => {
         const num = food.foodNum - 1
         const obj = Object.assign(food, {foodNum: num})
-        console.log("999999999999999",obj)
         //判断购物车中份数是否减为0,若该商品的份数为0,则界面中移除该商品,存储的数据信息也要删除
         const selfId = document.getElementById(e.target.id)
         const parentId = selfId.parentElement.parentElement
-        const id=parentId.id
-        const aa=document.getElementById(id)
         if (num=== 0) {
             parentId.style.display = 'none'
             if(this.state.shoppingCar.length===1){
                 this.setState({
                     isOpenCar: false,
+                    display:'none'
                 })
             }
             // 份数减为0时，删除该商品存入的数组名称,设置延时
@@ -372,25 +363,10 @@ class HotSpot extends Component {
         }else{
             parentId.style.display='block'
         }
-        // setTimeout(()=>{
-        //     for (let i = 0; i < this.state.foodAddName.length; i++) {
-        //         if (this.state.foodAddName[i] === food.shoppingName) {
-        //             const newShoppingCar = this.state.foodAddName.splice(i, 1);
-        //         }
-        //     }
-        //     //份数减为0时删除该商品在数组中的信息
-        //     for (let i = 0; i < this.state.shoppingCar.length; i++) {
-        //         if (this.state.shoppingCar[i] === food) {
-        //             const newShoppingCar = this.state.shoppingCar.splice(i, 1);
-        //         }
-        //     }
-        // },1500)
         this.setState({
             count: this.state.count - 1,
             totalPrice: this.state.totalPrice - food.shoppingPrice,
         })
-        console.log("减法的",typeof food.shoppingPrice)
-        console.log("减法的总金额",typeof this.state.totalPrice)
     }
 
     //购物车的结算功能
@@ -442,9 +418,6 @@ class HotSpot extends Component {
             scrollTop:2350,
             duration:300
         })
-        console.log("这是购物车中的数据对象", this.state.shoppingObj)
-        console.log("数组", this.state.shoppingCar)
-        console.log("数组名称foodAddName", this.state.foodAddName)
     }
     tip=()=>{
         Taro.pageScrollTo({
@@ -456,9 +429,7 @@ class HotSpot extends Component {
     render() {
 
         return (
-
             <View className='viewSwiper'>
-
                 <Swiper
                     className='swiperImg'
                     indicatorActiveColor='#333'
@@ -504,7 +475,7 @@ class HotSpot extends Component {
                                     food.type.map(aa => (
                                         <View>
                                             {/*根据每个单品的type属性与findAllType中的类型进行匹配,类型相同则遍历数据*/}
-                                            {aa.name == type.name &&
+                                            {aa.name === type.name &&
                                             <View className='SubModuleSub' onClick={() => this.chooseFood(food)}>
                                                 <Image src={'https://g1.glypro19.com/img/' + food.picture}
                                                        className='foodImg'></Image>
