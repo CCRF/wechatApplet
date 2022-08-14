@@ -17,7 +17,7 @@ export default function integralCenter (state = INITIAL_STATE,action) {
     case ADD_INTEGRAL:
       return {
         ...state,
-        personIntegral: state.personIntegral + 5
+        personIntegral: state.personIntegral + data
       }
     case INIT_INTEGRAL:
       return {

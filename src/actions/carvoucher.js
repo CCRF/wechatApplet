@@ -72,24 +72,6 @@ export const reduceCardVoucherInfo = (voucherId) => {
   }
 }
 
-// 卡券减少
-export const reduceCardVoucherInfo = (voucherId) => {
-    return (dispatch) => {
-      Taro.request({
-        // url: 'http://localhost:8090/wx/deleteCustomerCardVoucher',
-        url: 'https://g1.glypro19.com/wx/getLimitGoods',
-        method: "POST",
-        data: {voucherId:voucherId},
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        success: function (res) {
-          console.log("卡券是否删除成功",res.data.msg)
-          dispatch({type: REDUCE_CARD, data: res.data.msg})
-        }
-      })
-  }
-}
 
 
 

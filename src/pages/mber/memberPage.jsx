@@ -51,7 +51,8 @@ class MemberPage extends Component {
                 },
                 {
                     image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png',
-                    value: '新品首发'
+                    value: '新品首发',
+                    onClick: this.ChangeToNewGoods
                 },
                 {
                     image: 'https://img14.360buyimg.com/jdphoto/s72x72_jfs/t17251/336/1311038817/3177/72595a07/5ac44618Na1db7b09.png',
@@ -146,6 +147,13 @@ class MemberPage extends Component {
         })
     }
 
+    // 新品首发
+    ChangeToNewGoods = () => {
+        Taro.switchTab({
+            url: "../index/index"
+        }).then(r => {
+        })
+    }
 
     render() {
         // const list = this.props.memberPage.Info
@@ -161,7 +169,7 @@ class MemberPage extends Component {
         return (
             <View className="main">
                 <View className="header">
-                    <Image className="Logo" src={Logo}/>
+                    <Image className="Logo" src={list.avatar}/>
                     <View className="mInfo">
                         {
                             phone === "" ? (

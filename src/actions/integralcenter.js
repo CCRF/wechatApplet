@@ -15,20 +15,20 @@ let data = {
 }
 
 // 积分增加
-export const addIntegral = () => {
+export const addIntegral = (iValue) => {
     return (dispatch) => {
       Taro.request({
         // url: 'http://localhost:8090/wx/addCustomerIntegral',
         url: 'https://g1.glypro19.com/wx/addCustomerIntegral',
         method: "POST",
-        data: {openId:Taro.getStorageSync("personalInfo").openId,integral: 5},
+        data: {openId:Taro.getStorageSync("personalInfo").openId,integral: iValue},
         header: {
           // 'content-type': 'application/json'
           'content-type': 'application/x-www-form-urlencoded'
         },
         success: function (res) {
           console.log("是否增加成功",res.data.msg)
-          dispatch({type: ADD_INTEGRAL})
+          dispatch({type: ADD_INTEGRAL,data: iValue})
         }
       })
   }

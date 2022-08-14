@@ -89,7 +89,7 @@ class Index extends Component {
             // 提示框变为签到成功文本
             this.state.isSign = true;
             // 发送积分增加请求
-            this.props.addIntegral()
+            this.props.addIntegral(this.state.signIntegral)
             // 并修改积分签到状态
             signInStatus[weekDay - 1] = 1
             this.props.updateSignInStatus(signInStatus.toString(),signInStatus)

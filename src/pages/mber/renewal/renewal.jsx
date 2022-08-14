@@ -12,12 +12,13 @@ import "./renewal.scss"
 import Taro from "@tarojs/taro";
 import {addVoucher, checkPhone} from "../util/phoneutil";
 import {addCardVoucherInfo,getCardVoucherInfo} from "../../../actions/carvoucher";
-import {updateMemberStatus} from "../../../actions/memberInfo";
+import {updateMemberStatus,getInfo} from "../../../actions/memberInfo";
 
 @connect(({cardVoucher,memberPage}) => ({cardVoucher,memberPage}), {
     addCardVoucherInfo,
     getCardVoucherInfo,
-    updateMemberStatus
+    updateMemberStatus,
+    getInfo
 })
 class Renewal extends Component {
     constructor(props) {
@@ -101,6 +102,7 @@ class Renewal extends Component {
             // 将该卡券信息添加到数据库，然后在这里在发一次请求数据库个人卡券信息
             // 更新全局卡券信息
             this.props.getCardVoucherInfo()
+            this.props.getInfo()
             // 更新会员状态和过期日期
             if (this.state.allPrice === 15) {
                 this.props.updateMemberStatus(2)
@@ -204,9 +206,9 @@ class Renewal extends Component {
     }
 }
 
-const getInfo = state => {
+const getInfo1 = state => {
     return {
         Info: state.memberPage.Info
     }
 }
-export default connect(getInfo)(Renewal)
+export default connect(getInfo1)(Renewal)

@@ -5,6 +5,7 @@ export const checkPhone = (phoneNumberFromStorage) => {
 
     console.log("要检查的手机号：",phoneNumberFromStorage)
     const isBind = phoneNumberFromStorage === ""
+
     var phone = ""
     if (!isBind) {
         // 手机号预处理

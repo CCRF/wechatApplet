@@ -17,6 +17,10 @@ class Index extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            // 上一次使用券之后的价格
+            beforeTotalPrice: 0,
+            // 保存第一次价格
+            firstPrice: 0,
             // 备注文本框内容
             value: "",
             // 上一次点击卡券下标值
@@ -53,6 +57,8 @@ class Index extends Component {
         this.state.beforePrice = 0
         // 清空手风琴状态
         this.state.accordion = []
+        // 获取未使用的总价
+        this.state.firstPrice = Taro.getStorageSync('shoppingPay')
 
         // 深拷贝
         var cList = JSON.parse(JSON.stringify(this.state.cardList))
@@ -194,17 +200,24 @@ class Index extends Component {
             // 先保存好第一次选中的商品价格权益
             this.state.beforePrice = raiPrice
             const payed = this.state.price
+            // 保存上一次使用券之后的总价
+            this.state.beforeTotalPrice = payed - raiPrice
             this.setState({
                 price: payed - raiPrice
             })
         } else {
             console.log("第二次进来后", raiPrice)
-            const payed = this.state.price + this.state.beforePrice
+            // const payed = this.state.price + this.state.beforePrice
+            const payed = this.state.beforeTotalPrice + this.state.beforePrice
             // 保存好第二次选中以后的商品价格权益
             this.state.beforePrice = raiPrice
+            console.log("挖会更好好的1",this.state.price)
+            // 保存上一次使用券之后的总价
+            this.state.beforeTotalPrice = payed - raiPrice
             this.setState({
                 price: payed - raiPrice
             })
+            console.log("挖会更好好的2",this.state.price)
         }
     }
 
@@ -261,6 +274,15 @@ class Index extends Component {
         })
     }
 
+    // 取消使用卡券
+    cancelUseCard = () => {
+        const cList = this.state.accordion.fill(false)
+        this.setState({
+            accordion: cList,
+            price: this.state.firstPrice
+        })
+    }
+
 
     render() {
         const shoppingList = this.state.shoppingList
@@ -288,6 +310,9 @@ class Index extends Component {
                             value={this.state.value}
                             onInput={this.changeValue}
                         />
+                        <View>
+                            <Button style="width: 150px;font-size: 15px" onClick={this.cancelUseCard}>取消使用卡券</Button>
+                        </View>
                     </View>
 
                     {/*可用卡券界面*/}
