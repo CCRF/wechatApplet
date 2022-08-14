@@ -36,7 +36,7 @@ class TheCurrentOrder extends Component {
 
 
         return (
-            <View className={'allType'}>
+            <View className={'allType2'}>
                 <View>
 
 
@@ -48,10 +48,10 @@ class TheCurrentOrder extends Component {
                         {
                             this.props.currentOrder.currentOrderList.map((currentOrder, index) => {
                                 //测试数据
-                                // if (currentOrder.customerId == 'oiMdq5v1ieICMBK7K7dGq6f3yIN8' && currentOrder.startTime == this.state.onlyCurrentOrder) {
+                                if (currentOrder.customerId == 'oiMdq5v1ieICMBK7K7dGq6f3yIN8' && currentOrder.startTime == this.state.onlyCurrentOrder) {
 
                                 //真实数据
-                                if (currentOrder.customerId == 'oiMdq5v1ieICMBK7K7dGq6f3yIN8' && currentOrder.startTime == this.state.onlyCurrentOrder) {
+                                // if (currentOrder.customerId == 'oiMdq5v1ieICMBK7K7dGq6f3yIN8' && currentOrder.startTime == this.state.onlyCurrentOrder) {
                                     return (
                                         <View key={index}>
                                             <View>

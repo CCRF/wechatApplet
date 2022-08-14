@@ -37,9 +37,10 @@ class TheHistoryOrder extends Component {
         const a = 0
 
         return (
-            <View className={'allType'}>
+            <View className={'allType2'}>
 
                 <View >
+
                     <View className={'view_head'}>
                         <Text className={'text1'}>订单已完成</Text>
                         <Text className={'text2'}>订单已完成，祝您用餐愉快</Text>
@@ -55,10 +56,10 @@ class TheHistoryOrder extends Component {
                         {
                             this.props.historyOrder.historyOrderList.map((historyOrder, index) => {
                                 //测试数据
-                                if (historyOrder.customerId == 'oiMdq5v1ieICMBK7K7dGq6f3yIN8' && historyOrder.startTime == this.state.c) {
+                                // if (historyOrder.customerId == 'oiMdq5v1ieICMBK7K7dGq6f3yIN8' && historyOrder.startTime == this.state.c) {
 
                                     //真实数据
-                                // if (historyOrder.customerId == open_id && historyOrder.startTime == this.state.c) {
+                                if (historyOrder.customerId == open_id && historyOrder.startTime == this.state.c) {
                                     return (
                                         <View key={index}>
                                             <View>

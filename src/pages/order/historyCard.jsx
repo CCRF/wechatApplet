@@ -80,7 +80,7 @@ class OngoingCard extends Component {
                                                 <View className={'everyOrder'}>
 
                                                     <View className={'allTitle'}>
-                                                        <Text>外卖订单</Text>
+                                                        <Text>订单</Text>
 
                                                         <View >
                                                             <View className={'allType'}>
