@@ -88,6 +88,14 @@ class MemberPage extends Component {
     }
 
 
+    // componentWillReceiveProps(nextProps){
+    //     console.log("随着props不同刷新界面")
+    //     this.setState({
+    //         ...nextProps
+    //     })
+    // }
+
+
     // 立即续费
     Renewal = () => {
         Taro.navigateTo({
