@@ -1,4 +1,4 @@
-import {ADD_CARD, CARD_INFO, GER_LIMIT_GOODS} from "../constants/carvoucher"
+import {ADD_CARD, CARD_INFO, GER_LIMIT_GOODS, REDUCE_CARD} from "../constants/carvoucher"
 
 const INITIAL_STATE = {
     cardVoucherInfo: [],
@@ -19,6 +19,16 @@ export default function cardVoucher(state = INITIAL_STATE, action) {
                 limitGoods: data
             }
         case ADD_CARD:
+            return {
+                ...state,
+                addMsg: data
+            }
+        case REDUCE_CARD:
+            return {
+                ...state,
+                reduceMsg: data
+            }
+        case REDUCE_CARD:
             return {
                 ...state,
                 cardVoucherInfo: data

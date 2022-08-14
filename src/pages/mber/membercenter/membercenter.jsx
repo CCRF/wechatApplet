@@ -6,6 +6,7 @@ import "./membercenter.scss"
 import Integral from "../../../image/members/integral.png"
 import Taro from "@tarojs/taro";
 import {connect} from "react-redux";
+import {checkPhone} from "../util/phoneutil";
 class MemberCenter extends Component {
   constructor(props) {
     super(props);
@@ -22,11 +23,12 @@ class MemberCenter extends Component {
 
   render() {
     const personalIntegral = this.props.personIntegral
+    const personalInfo = Taro.getStorageSync("personalInfo")
     // 手机号预处理
-    const phoneNumber = Taro.getStorageSync("personalInfo").phoneNumber
-    const prePhoneNumber = phoneNumber.substring(0,3)
-    const afterPhoneNumber = phoneNumber.substring(phoneNumber.length - 4,phoneNumber.length)
-    const phone = prePhoneNumber + "******" + afterPhoneNumber
+    // 查看该用户是否绑定手机
+    const phoneNumberFromStorage = personalInfo.phoneNumber
+    const phone = checkPhone(phoneNumberFromStorage)
+    console.log("我的会员中心检查手机号：",phone)
 
     return (
       <View className="main">
@@ -34,12 +36,12 @@ class MemberCenter extends Component {
         <View className="header">
           <View className="header-text1">手机号：{phone}</View>
           <View className="header-text2"><Text>积分值：</Text><Text>{personalIntegral}</Text></View>
-          <View className="header-text3">差387享88元开通VIP</View>
+          <View className="header-text3">会员积分,越积越多,好礼多多</View>
         </View>
         <View className="body">
           <View className="integralArea">
             <View>积分值{personalIntegral}</View>
-            <View>更省钱！开通88VIP预计年省1839元</View>
+            <View>更省钱！开通会员预计年省1839元</View>
           </View>
           <View className="strategyArea">
             <View className="mySwiperArea">

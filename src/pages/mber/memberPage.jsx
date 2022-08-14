@@ -3,6 +3,7 @@ import {Component} from "react"
 import {connect} from 'react-redux'
 import {ScrollView, Swiper, SwiperItem, Image, Text, View, Button} from "@tarojs/components"
 import {AtGrid} from "taro-ui"
+import {checkPhone} from "./util/phoneutil";
 import Logo from "../../image/members/hha.png"
 import Gift1 from "../../image/members/gift1.jpg"
 import Gift2 from "../../image/members/gift2.jpg"
@@ -19,12 +20,12 @@ import {getInfo} from "../../actions/memberInfo";
 //     dispatch(getInfo())
 //   }
 // }))
-// @connect(({memberPage}) => ({memberPage}), {getInfo})
+@connect(({memberPage}) => ({memberPage}), {getInfo})
 class MemberPage extends Component {
     constructor(props) {
         super(props);
-        // this.props.getInfo()
         this.state = {
+            isMem: 0,
             info: this.props.Info,
             show: false,
             KFCGift: {
@@ -65,6 +66,35 @@ class MemberPage extends Component {
             ]
         }
     }
+    componentDidMount() {
+        const memberBol = Taro.getStorageSync("personalInfo").isMember
+        console.log("componentDidMount中的会员状态：",memberBol)
+        if (memberBol === 0) {
+            this.state.show = true
+            this.state.isMem = "会员已过期"
+        } else if (memberBol === 1) {
+            this.state.show = false
+            this.state.isMem = "轻享会员"
+        } else if (memberBol === 2) {
+            this.state.show = false
+            this.state.isMem = "尊享会员"
+        } else {
+            console.log("我的界面，会员状态为空")
+        }
+
+        this.setState({
+
+        })
+    }
+
+
+    // componentWillReceiveProps(nextProps){
+    //     console.log("随着props不同刷新界面")
+    //     this.setState({
+    //         ...nextProps
+    //     })
+    // }
+
 
     // 立即续费
     Renewal = () => {
@@ -121,13 +151,12 @@ class MemberPage extends Component {
         // const list = this.props.memberPage.Info
         const list = this.state.info
 
-        // 手机号预处理
-        const phoneNumber = Taro.getStorageSync("personalInfo").phoneNumber
-        const prePhoneNumber = phoneNumber.substring(0,3)
-        const afterPhoneNumber = phoneNumber.substring(phoneNumber.length - 4,phoneNumber.length)
-        const phone = prePhoneNumber + "******" + afterPhoneNumber
-
-        console.log("memberPage信息1", list)
+        // 查看该用户是否绑定手机
+        const phoneNumberFromStorage = Taro.getStorageSync("personalInfo").phoneNumber
+        console.log("页面刷新个人信息",Taro.getStorageSync("personalInfo"))
+        const phone = checkPhone(phoneNumberFromStorage)
+        console.log("我的界面检查手机号：",phone)
+        console.log("我的界面检查会员状态：",this.state.isMem)
 
         return (
             <View className="main">
@@ -135,24 +164,15 @@ class MemberPage extends Component {
                     <Image className="Logo" src={Logo}/>
                     <View className="mInfo">
                         {
-                            phoneNumber === "" ? (
-                                <View className="phone">手机号：未绑定</View>
+                            phone === "" ? (
+                                <View className="phone">手机号{phone}</View>
                                 // <View className="phone">手机号：{phone}</View>
                             ) : (
                                 <View className="phone">手机号：{phone}</View>
                                 // <View className="phone">手机号：未绑定</View>
                             )
                         }
-
-                        {
-                            list.isMember === 0 ? (
-                                <Text className="dated">会员已过期 </Text>
-                            ) : list.isMember === 1 ? (
-                                <Text className="dated">轻享会员 > </Text>
-                            ) : (
-                                <Text className="dated">尊享会员 > </Text>
-                            )
-                        }
+                        <Text className="dated">{this.state.isMem} > </Text>
                     </View>
                     <View className="saved">
                         <Text>已消费</Text>
@@ -162,10 +182,10 @@ class MemberPage extends Component {
 
                     {this.state.show ? (
                         <View className="immediately"><Button onClick={this.Renewal} size="mini"
-                                                              plain="true">立即支付</Button></View>
+                                                              plain="true">立即开通</Button></View>
                     ) : (
                         <View className="immediately"><Button onClick={this.Renewal} size="mini"
-                                                              plain="true">立即续费</Button></View>
+                                                              plain="true">开通中心</Button></View>
                     )}
 
                 </View>

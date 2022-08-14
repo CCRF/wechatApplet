@@ -35,6 +35,7 @@ export default class Index extends Component {
         }
     }
 
+
     handlerIn = () => {
         const handler_openId = Taro.getStorageSync("personalInfo").openId;
         console.log("函数调用了没有")

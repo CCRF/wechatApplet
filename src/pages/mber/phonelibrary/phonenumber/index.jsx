@@ -24,7 +24,6 @@ class Index extends Component {
         // 先从Storage中查看是否有手机号，因为第一次绑定手机账号后，以后每次使用wx账号登录
         // 都能拿到手机号，就不用在绑定手机号了
         const phoneNumber = Taro.getStorageSync("personalInfo").phoneNumber
-        console.log("aaaaasssssssssss")
         return (
             <View>
                 {phoneNumber === "" ? (
