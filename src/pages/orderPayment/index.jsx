@@ -267,6 +267,7 @@ class Index extends Component {
         return (
             <View>
                 <View className='main'>
+                    <View className='detail'>商品详情</View>
                     {this.state.shoppingList.map(food => (
                         <View className='food' onClick={this.test}>
                             <Image src={food.shoppingImg} className='img'></Image>
@@ -302,7 +303,10 @@ class Index extends Component {
                             count={this.countPrice}
                         />
                     </View>
+
                 </View>
+
+
 
                 <View className='pay'>
                     <View className='goBack' onClick={() => this.goBack()}>取消订单</View>
@@ -320,6 +324,7 @@ class Index extends Component {
                     </AtModalContent>
                     <AtModalAction> <Button onClick={this.close}>取消</Button></AtModalAction>
                 </AtModal>
+
 
 
                 {/*是否支付界面*/}

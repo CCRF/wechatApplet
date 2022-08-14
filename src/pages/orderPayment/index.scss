@@ -15,7 +15,15 @@
     background-color: #f3f2f2;
     border-radius: 20px;
 }
-
+.detail{
+    width: 95%;
+    height: 100px;
+    margin-left: 3%;
+    border-bottom:5px solid #c9c8c8;
+    margin-bottom: 10px;
+    line-height: 100px;
+    font-weight: bold;
+}
 .food {
     width: 94%;
     height: 170px;
@@ -36,7 +44,6 @@
     height: 60px;
     margin-left: 215px;
     margin-top: -160px;
-    /*background-color: crimson;*/
     font-size: 28px;
     font-weight: bold;
     line-height: 60px;
@@ -46,7 +53,6 @@
     width: 330px;
     height: 40px;
     margin-left: 215px;
-    /*background-color: cornflowerblue;*/
     font-size: 25px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -56,7 +62,6 @@
 .num {
     width: 50px;
     height: 50px;
-    /*background-color: darkcyan;*/
     margin-left: 215px;
     margin-top: 10px;
 }
@@ -66,7 +71,6 @@
     height: 70px;
     margin-left: 536px;
     margin-top: -70px;
-    /*background-color: darkgoldenrod;*/
     text-align: right;
 }
 .pay{
@@ -97,4 +101,12 @@
     text-align: center;
     line-height: 100px;
     background-color: #e7103a;
+}
+.remark{
+    width: 94%;
+    height: 70px;
+    margin-left: 3%;
+    line-height: 70px;
+    background-color: white ;
+    margin-top: 10px;
 }

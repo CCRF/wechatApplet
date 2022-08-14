@@ -1,9 +1,25 @@
 .login{
   width: 100%;
   text-align: right;
+  display: inline-block;
+}
+.loginView{
+  position: absolute;
+  width: 350px;
+  margin-left: 280px;
 }
 .loginName{
   font-size: 35px;
+}
+.exitView{
+  position: absolute;
+  width: 70px;
+  margin-left:630px;
+  margin-top: 3px;
+}
+.exit{
+  font-size: 35px;
+  color: crimson;
 }
 
 /*顶部SwiperView的设置*/
@@ -16,7 +32,6 @@
   background-color: rgba(194,3,41,0.9);
 
 }
-
 /*顶部swiper图片的设置*/
 .viewImage {
   width: 600px;

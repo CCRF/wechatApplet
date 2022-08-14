@@ -14,7 +14,11 @@ class Index extends Component {
         this.state = {
             sessionKey: "ss",
             openId: "op",
-            login:'登录',
+            //loginDisplay
+            loginDisPlay:'block',
+            login:'',
+            //是否显示退出,
+            display:'none'
         }
     }
 
@@ -64,7 +68,9 @@ class Index extends Component {
                                     if (res3.data.code === 200) {
                                         let userInfo = Object.assign(res1, res3.data)
                                         that.setState({
-                                            login:'欢迎您，'+userInfo.userInfo.nickName+'用户'
+                                            login:'欢迎您，'+userInfo.userInfo.nickName+'用户',
+                                            display:'block',
+                                            loginDisPlay:'none',
                                         })
                                         wx.hideLoading();
                                         wx.stopPullDownRefresh();
@@ -87,14 +93,32 @@ class Index extends Component {
         })
     }
 
+    login=(e)=>{
+        e.stopPropagation()
+    }
+
     render() {
         function bindgetphonenumber(e) {
             console.log("bind");
         }
+        // let login=Taro.getStorageSync('userInfo1');
+        // if(login){
+        //     this.setState({
+        //         login:'欢迎您，'+login.userInfo.nickName+'用户',
+        //         display:'block',
+        //         loginDisPlay:'none',
+        //     })
+        // }
         return (
             <View>
                 <View className='login'>
-                    <Text className='loginName' onClick={this.getUserProfile}>{this.state.login}</Text>
+                    <View className='loginView'>
+                        <Text className='loginName' onClick={()=>this.getUserProfile()} style={{display:this.state.loginDisPlay}}>登录</Text>
+                        <Text className='loginName'>{this.state.login}</Text>
+                    </View>
+                    <View className='exitView' style={{display:this.state.display}}>
+                        <Text className='exit'>退出</Text>
+                    </View>
                     <AtIcon value='user' size='25' color='crimson'></AtIcon>
                 </View>
                 <Swiper
