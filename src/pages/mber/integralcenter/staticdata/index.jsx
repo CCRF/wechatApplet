@@ -94,14 +94,6 @@ export const raiList3 = [
   },
   {
     raiId: 4,
-    img: integralIcon4,
-    name: "轻享红包",
-    integral: "318",
-    voucherRai: "减3元",
-    goodsList: [11,13,12,10,9],
-  },
-  {
-    raiId: 5,
     img: integralIcon5,
     name: "尊享红包",
     integral: "328",
