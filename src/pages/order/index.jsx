@@ -1,8 +1,6 @@
 import {Component} from 'react'
-import {Text, View} from '@tarojs/components'
+import { View} from '@tarojs/components'
 import './index.scss'
-
-
 import Skip from './skip'
 
 class Home extends Component {

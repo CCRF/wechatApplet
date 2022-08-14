@@ -143,32 +143,3 @@ export const updatePhoneNumber = () => {
     dispatch({type: UPDATE_PHONE,data: data})
   }
 }
-
-export const updatePhoneNumber = () => {
-
-  const a = Taro.getStorageSync("personalInfo")
-  console.log("xagaag阿士大夫",Taro.getStorageSync("phoneNumber"))
-  const personalInfo = {
-    avatar: a.avatar,
-    code: a.code,
-    encryptedData: a.encryptedData,
-    isMember: a.isMember,
-    iv: a.iv,
-    latestTime: a.latestTime,
-    nickName: a.nickName,
-    openId: a.openId,
-    phoneNumber: Taro.getStorageSync("phoneNumber"),
-    rawData: a.rawData,
-    remark: a.remark,
-    sessionKey: a.sessionKey,
-    signature: a.signature,
-    sum: a.sum,
-  }
-
-  // 重新设置个人信息
-  Taro.setStorageSync("personalInfo",personalInfo)
-  data.Info.phone = Taro.getStorageSync("phoneNumber")
-  return (dispatch) => {
-    dispatch({type: UPDATE_PHONE,data: data})
-  }
-}

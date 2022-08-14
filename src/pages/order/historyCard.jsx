@@ -68,10 +68,10 @@ class OngoingCard extends Component {
                         {
                             this.props.historyOrder.historyOrderList.map((historyOrder, index) => {
                                 //测试
-                                if (historyOrder.customerId == 'oiMdq5v1ieICMBK7K7dGq6f3yIN8') {
+                                // if (historyOrder.customerId == 'oiMdq5v1ieICMBK7K7dGq6f3yIN8') {
 
                                 //真实
-                                // if (historyOrder.customerId == open_id) {
+                                if (historyOrder.customerId == open_id) {
                                     return (
 
                                         <View key={index}>
