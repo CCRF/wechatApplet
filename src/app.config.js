@@ -10,12 +10,13 @@ export default defineAppConfig({
         'pages/mber/phonelibrary/index',
         'pages/mber/integralcenter/index',
         'pages/mber/phonelibrary/phonenumber/index',
+        'pages/ordering/index',
         'pages/order/index',
         'pages/order/theCurrentOrder',
         'pages/order/theHistoryOrder',
-        'pages/ordering/index',
+        'pages/order/theReturnOrder',
         'pages/personal/index',
-        'pages/orderPayment/index'
+        'pages/orderPayment/index',
     ],
     window: {
         backgroundTextStyle: 'light',

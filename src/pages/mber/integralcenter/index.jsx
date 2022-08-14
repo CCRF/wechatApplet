@@ -2,7 +2,7 @@ import {Component} from "react"
 import {connect} from "react-redux"
 import {ScrollView, View, Text, Image, Button} from "@tarojs/components"
 import {AtModal, AtNoticebar, AtToast} from 'taro-ui'
-import {raiList} from "./staticdata/index"
+import {raiList1,raiLis2,raiList3} from "./staticdata/index"
 import RaiView from "./raiview/raiview"
 import SignInView from "./signinview/signinview";
 import integralIcon from "../../../image/members/积分-实色.png";
@@ -15,6 +15,9 @@ import {
     updateSignInStatus
 } from "../../../actions/integralcenter";
 import {addCardVoucherInfo, getCardVoucherInfo} from "../../../actions/carvoucher";
+import Taro from "@tarojs/taro";
+import {addVoucher} from "../util/phoneutil";
+import {add} from "../../../actions/counter";
 
 @connect(({integralCenter, cardVoucher}) => ({integralCenter, cardVoucher}), {
     subtractIntegral,
@@ -30,6 +33,8 @@ class Index extends Component {
         super(props);
         this.props.initSignInStatus()
         this.state = {
+            // 每天签到的积分
+            signIntegral: 0,
             // 兑换卡券信息
             addCard: {
 
@@ -46,14 +51,38 @@ class Index extends Component {
             toastSign: false,
             // 是否已签
             isSign: false,
-            raiList: raiList,
+            raiList: [],
+        }
+    }
+
+    componentDidMount() {
+        const member = Taro.getStorageSync("personalInfo").isMember
+        console.log("权益兑换界面会员状态：",member)
+        if (member === 0) {
+            this.state.raiList = raiList1
+            this.state.signIntegral = 10
+        } else if (member === 1) {
+            this.state.raiList = raiLis2
+            this.state.signIntegral = 15
+        } else if (member === 2) {
+            this.state.raiList = raiList3
+            this.state.signIntegral = 20
+        } else {
+            console.log("会员状态为空")
         }
     }
 
     // 签到
     signIn = () => {
         const signInStatus = this.props.integralCenter.signInStatus
-        const weekDay = new Date().getDay()
+        const weekDay1 = new Date().getDay()
+
+        var weekDay = 0
+        if (weekDay1 === 0) {
+            weekDay = 7
+        } else {
+            weekDay = weekDay1
+        }
 
         // 判断今天是否已签 0未签，1已签
         if (signInStatus[weekDay - 1] === 0) {
@@ -87,30 +116,8 @@ class Index extends Component {
             if (item.raiId === raiItem.raiId) {
                 console.log("选中卡券信息", item)
                 // 卡券信息处理，
-                // 卡券过期时间一律为七天之后
-                // 获取当前时间，时间处理
-                const date = new Date()
-                date.setDate(date.getDate() + 7)
-                const year = date.getFullYear()
-                const month = date.getMonth() + 1
-                const day = date.getDate()
-                const Hours = date.getHours()
-                const minutes = date.getMinutes()
-                const second = date.getSeconds()
-                const dated = year + "-" + month + "-" + day + " " + Hours + ":" + minutes + ":" + second
-                console.log("卡券过期时间",dated)
-
-                // 卡券信息整理
-                const card = {
-                    voucherId: "null",
-                    openId: "15",
-                    voucherName: raiItem.name,
-                    voucherDated: dated,
-                    voucherUrl: "../../.." + raiItem.img,
-                    voucherType: raiItem.name,
-                    voucherRai: raiItem.voucherRai,
-                    voucherLimit: raiItem.goodsList
-                }
+                // 卡券过期时间一律为30天之后
+                const card = addVoucher(raiItem)
                 this.state.addCard = card
 
                 // 弹出提示框是否兑换
@@ -132,28 +139,25 @@ class Index extends Component {
 
     // 模态框确认按钮
     conversionHandleConfirm = () => {
-        // console.log("是否能兑换", this.state.isConversion)
-        const isConversion = this.props.integralCenter.personIntegral < this.state.requiredIntegral
-        console.log("是否能兑换", isConversion)
-        if (isConversion) {
+        const isConversionBol = this.props.integralCenter.personIntegral < this.state.requiredIntegral
+        if (isConversionBol) {
             // 显示 提示积分不足
+            console.log("积分不足")
             this.state.isConversion = false;
-            this.props.addCardVoucherInfo(this.state.addCard)
-            this.props.getCardVoucherInfo()
-            console.log("要更新的卡券信息",this.state.addCard)
-
         } else {
+            console.log("积分足够")
             // 显示 提示兑换成功
-            this.state.isConversin = true;
+            this.state.isConversion = true;
             // 进行卡券增加操作
-            // this.props.addCardVoucheInfo(this.state.addCard)
-            // 将该卡券信息添加到数据库，然后在这里在发一次请求数据库个人卡券信息
-            this.props.getCardVoucherInfo()
-            // 更新全局卡券信息
-
-
+            this.props.addCardVoucherInfo(this.state.addCard)
+            console.log("要更新的卡券信息",this.state.addCard)
             // 个人积分相应减少
             this.props.subtractIntegral(this.state.requiredIntegral)
+            setTimeout(() => {
+                // 将该卡券信息添加到数据库，然后在这里在发一次请求数据库个人卡券信息
+                // 更新全局卡券信息
+                this.props.getCardVoucherInfo()
+            }, 1000)
         }
         // 弹出兑换状态提示框
         this.setState({
@@ -162,11 +166,16 @@ class Index extends Component {
         })
     }
 
-    // 兑换状态提示框关闭时操作
+    // 兑换状态提示框关闭时操作，默认3秒后关闭
     conversionToastClose = () => {
         this.setState({
             toastConversion: false
         })
+    }
+
+    comeIn = () => {
+        console.log("立即前往")
+        this.props.getCardVoucherInfo()
     }
 
 
@@ -188,7 +197,7 @@ class Index extends Component {
                     <View>
                         <View className="signIn">
                             <View><Text>签到领积分</Text></View>
-                            <View><Text>连签7天额外领取50积分</Text></View>
+                            <View><Text>每天签到可获取{this.state.signIntegral}分</Text></View>
                         </View>
                         <View className="signInBtnArea"><Button onClick={this.signIn}>立即签到</Button></View>
                         <AtToast onClose={this.signToastClose} isOpened={this.state.toastSign}
@@ -196,6 +205,7 @@ class Index extends Component {
                     </View>
                     <SignInView
                         list={this.props.integralCenter.signInStatus}
+                        signIntegral={this.state.signIntegral}
                     />
                 </View>
                 <View className="taskArea">
@@ -205,7 +215,7 @@ class Index extends Component {
                             <View><Text>去话费充值会场逛逛</Text></View>
                             <View><Text>浏览完成后可获得2积分</Text></View>
                         </View>
-                        <View className="taskBtnArea"><Button>立即前往</Button></View>
+                        <View className="taskBtnArea"><Button onClick={this.comeIn}>立即前往</Button></View>
                     </View>
                 </View>
                 <View className="conversionArea">
@@ -240,22 +250,15 @@ class Index extends Component {
                     />
                 </View>
                 <AtNoticebar marquee>
-                    这是 NoticeBar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏
+                    这是 积分中心 通告栏，这是 积分中心 通告栏，这是 积分中心 通告栏
                 </AtNoticebar>
                 <AtNoticebar marquee>
-                    这是 NoticeBar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏
+                    这是 积分中心 通告栏，这是 积分中心 通告栏，这是 积分中心 通告栏
                 </AtNoticebar>
             </View>
         )
     }
 }
-
-// const initIntegral = state => {
-//   return {
-//     Info: state.integralCenter.personIntegral
-//   }
-// }
-// export default connect(initIntegral)(Index)
 
 export default Index
 

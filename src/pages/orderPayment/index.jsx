@@ -1,17 +1,26 @@
 import {Component} from 'react'
-import {Button, Image, Text, View} from "@tarojs/components";
+import {Button, Image, Text, View, Textarea} from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import UsableCardVoucher from "./usablecardvoucher/index"
 import {AtToast, AtModal, AtModalHeader, AtModalContent, AtModalAction} from "taro-ui"
 import {connect} from "react-redux";
 import "./index.scss"
-import {reduceCardVoucherInfo} from "../../actions/carvoucher";
+import {getCardVoucherInfo, reduceCardVoucherInfo} from "../../actions/carvoucher";
+import {addCustomerOrder} from "../../actions/memberInfo";
 
-@connect(({cardVoucher}) => ({cardVoucher}), {reduceCardVoucherInfo})
+@connect(({cardVoucher, memberPage}) => ({cardVoucher, memberPage}), {
+    getCardVoucherInfo,
+    reduceCardVoucherInfo,
+    addCustomerOrder
+})
 class Index extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            // 备注文本框内容
+            value: "",
+            // 上一次点击卡券下标值
+            beforeClickValue: '嘿嘿',
             // 提示支付成功
             toastView: false,
             // 是否支付模态框显示状态
@@ -25,6 +34,7 @@ class Index extends Component {
             // 上一次选中商品的价格
             beforePrice: 0,
             oneView: false,
+            twoView: false,
             dealWithCardList: [],
             // 卡券信息列表
             cardList: [],
@@ -131,21 +141,33 @@ class Index extends Component {
 
 
     // 控制可用券内容手风琴是否折叠
-    twoShow = (accordionIndex, e) => {
-        // 获取手风琴折叠状态
-        const accordionList = this.state.accordion
-        // 修改手风琴选中的折叠状态
-        accordionList[accordionIndex] = !accordionList[accordionIndex]
-        // 更新
+    twoShow = () => {
+        const twoBol = this.state.twoView
         this.setState({
-            accordion: accordionList,
+            twoView: !twoBol,
         })
     }
 
     // 计算所选中的商品价格，同步到总价
-    countPrice = (vItem, lItem, e) => {
+    countPrice = (vItem, accordionIndex) => {
+
+        // 获取选中状态
+        var accordionList = this.state.accordion
+
+        // 否，则记录这一次点击的卡券区域下标值，改变当前点击的卡券区域颜色，其他恢复为原色
+        // this.state.beforeClickValue = accordionIndex
+        // 修改手风琴选中的颜色
+        const isBol = !accordionList[accordionIndex]
+        // 将不是当前点击的卡券区域全部变为原色
+        accordionList = this.state.accordion.fill(false)
+        accordionList[accordionIndex] = isBol
+        // 更新
+        this.setState({
+            accordion: accordionList,
+        })
+
         console.log("要计算的商品权益", vItem.voucherRai)
-        console.log("要计算的商品", lItem)
+
         // 保留选中之后预计要删除的卡券id
         this.state.voucherId = vItem.voucherId
         // 保留选中之后预计要删除的卡券名称
@@ -207,6 +229,14 @@ class Index extends Component {
         const vId = this.state.voucherId
         // 进行卡券删除
         this.props.reduceCardVoucherInfo(vId)
+        // 订单生成，加入数据库
+        this.props.addCustomerOrder(this.state.shoppingList,
+            this.state.price.toFixed(2), this.state.value)
+        setTimeout(() => {
+            // 进行全局卡券信息更新，同步卡券中心
+            this.props.getCardVoucherInfo()
+        }, 1000)
+
         this.setState({
             payModelView: false,
             toastView: true,
@@ -218,11 +248,21 @@ class Index extends Component {
         this.setState({
             toastView: false
         })
+        Taro.switchTab({
+            url: "../ordering/index"
+        }).then(r => {
+        })
+    }
+
+    // 多行文本框值监听
+    changeValue = (e) => {
+        this.setState({
+            value: e.detail.value
+        })
     }
 
 
     render() {
-
         const shoppingList = this.state.shoppingList
         return (
             <View>
@@ -239,9 +279,16 @@ class Index extends Component {
                         </View>
                     ))}
 
-                    {/*备注界面*/}
-                    <View className='remark'>
-                        备注
+                    <View>
+                        <View style="margin: 0 0 0 15px">备注:</View>
+                        <Textarea
+                            style="margin: 0 auto;background:#fff;width:85%;height:80px;padding:0 30rpx"
+                            autoHeight
+                            placeholder="限200字"
+                            maxlength={200}
+                            value={this.state.value}
+                            onInput={this.changeValue}
+                        />
                     </View>
 
                     {/*可用卡券界面*/}
@@ -252,6 +299,7 @@ class Index extends Component {
                             oneHandler={this.oneShow}
                             twoHandler={this.twoShow}
                             oneShow={this.state.oneView}
+                            twoShow={this.state.twoView}
                             count={this.countPrice}
                         />
                     </View>
@@ -272,7 +320,7 @@ class Index extends Component {
                 <AtModal isOpened={this.state.isOpened}>
                     <AtModalHeader>套餐内容</AtModalHeader>
                     <AtModalContent>
-                        {this.state.contain}
+                        {this.state.contain === "" ? "这个不是套餐" : this.state.contain}
                     </AtModalContent>
                     <AtModalAction> <Button onClick={this.close}>取消</Button></AtModalAction>
                 </AtModal>
@@ -293,7 +341,7 @@ class Index extends Component {
                     </AtModalAction>
                 </AtModal>
 
-                <AtToast onClose={this.toastViewClose} isOpened={this.state.toastView} text="支付成功" icon="{icon}"
+                <AtToast hasMask="true" onClose={this.toastViewClose} isOpened={this.state.toastView} text="支付成功" icon="{icon}"
                          status="success"/>
 
             </View>

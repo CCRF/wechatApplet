@@ -3,10 +3,11 @@
 @import "~taro-ui/dist/style/components/icon.scss";
 
 .test-a {
-  margin: 15px 0 0 0;
+  margin: 45px 0 0 0;
 }
 
-.cardNameArea {
-  border: 3px solid red;
-  margin: 15px 0 0 15px;
+.test-b {
+  margin: 45px 0 0 0;
+  background-image: linear-gradient(#6495ED,wheat);
 }
+

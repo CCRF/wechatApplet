@@ -36,12 +36,12 @@ class MemberCenter extends Component {
         <View className="header">
           <View className="header-text1">手机号：{phone}</View>
           <View className="header-text2"><Text>积分值：</Text><Text>{personalIntegral}</Text></View>
-          <View className="header-text3">差387享88元开通VIP</View>
+          <View className="header-text3">会员积分,越积越多,好礼多多</View>
         </View>
         <View className="body">
           <View className="integralArea">
             <View>积分值{personalIntegral}</View>
-            <View>更省钱！开通88VIP预计年省1839元</View>
+            <View>更省钱！开通会员预计年省1839元</View>
           </View>
           <View className="strategyArea">
             <View className="mySwiperArea">
