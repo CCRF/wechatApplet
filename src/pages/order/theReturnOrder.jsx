@@ -1,18 +1,30 @@
 import {Component} from 'react'
-import {Image, ScrollView, Text, View} from '@tarojs/components'
+import {Button, Image, ScrollView, Text, View} from '@tarojs/components'
 import Taro, {Current} from "@tarojs/taro";
 import {connect} from "react-redux";
+import {moderOrderState} from "../../actions/returnOrder";
 import currentOrder from "../../reducers/currentOrder";
 
-import './theCurrentOrder.css'
+import './theReturnOrder.css'
+import {AtModal, AtModalAction, AtModalContent, AtModalHeader} from "taro-ui";
 
+@connect(({returnOrder}) => (returnOrder), {moderOrderState})
 @connect(({currentOrder}) => ({currentOrder}))
-class TheCurrentOrder extends Component {
+class TheReturnOrder extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            onlyCurrentOrder: 0
+            isOpened: {
+                isReturn: false,
+                isSuccess: false,
+            },
+
+            onlyCurrentOrder: 0,
+            returnOrderList: {
+                id: 2334,
+                state: 2
+            }
         }
 
     }
@@ -25,13 +37,58 @@ class TheCurrentOrder extends Component {
         })
     }
 
+    handleClose = (e) => {
+        console.log(e)
+    }
 
-    xiangxiOrder = () => {
-        this.xiangxiOrder()
+    handleCancel = (e) => {
+        this.state.isReturn = false;
+        this.setState({})
+        console.log(e)
+    }
+
+    handleCancel2 = (e) => {
+        this.state.isSuccess = false;
+        this.setState({})
+        console.log(e)
+    }
+
+
+
+
+    toReturn = (currentOrder) => {
+        this.setState({
+            isReturn: true
+        })
+    }
+
+    CheckReturnOrder = () => {
+        console.log("可以检查当前可退订单")
+        Taro.switchTab({
+            url: '../ordering/index'
+        })
+    }
+
+
+    toReturnCard = (currentOrder) => {
+        console.log("退单了")
+        console.log("当前Id", currentOrder)
+        console.log("当前的订单状态", currentOrder.orderStatus)
+        currentOrder.orderStatus = -1
+        this.state.returnOrderList.id = currentOrder.id
+        this.state.returnOrderList.state = currentOrder.orderStatus
+        console.log("修改后的订单状态", this.state.returnOrderList)
+        this.props.moderOrderState(this.state.returnOrderList)
+        this.setState({
+            isReturn: false,
+            isSuccess: true
+        })
+
     }
 
 
     render() {
+
         const open_id = Taro.getStorageSync("personalInfo").openId
 
 
@@ -41,17 +98,17 @@ class TheCurrentOrder extends Component {
 
 
                     <View className={'view_head'}>
-                        <Text className={'text1'}>Happy</Text>
+                        <Text className={'text1'}>可退单~</Text>
                     </View>
 
                     <View>
                         {
                             this.props.currentOrder.currentOrderList.map((currentOrder, index) => {
                                 //测试数据
-                                // if (currentOrder.customerId == 'oiMdq5v1ieICMBK7K7dGq6f3yIN8' && currentOrder.startTime == this.state.onlyCurrentOrder) {
-
-                                //真实数据
                                 if (currentOrder.customerId == 'oiMdq5v1ieICMBK7K7dGq6f3yIN8' && currentOrder.startTime == this.state.onlyCurrentOrder) {
+
+                                    //真实数据
+                                    // if (currentOrder.customerId == open_id && currentOrder.startTime == this.state.onlyCurrentOrder) {
                                     return (
                                         <View key={index}>
                                             <View>
@@ -91,7 +148,6 @@ class TheCurrentOrder extends Component {
 
                                                     </View>
 
-
                                                     <View className={'body_body'}>
 
                                                         <View>
@@ -109,9 +165,9 @@ class TheCurrentOrder extends Component {
                                                             <Text className={'textJianGe'}>订单状态：</Text>
 
                                                             {currentOrder.orderStatus == 0 ? (
-                                                                <text className={'textLeft'}>老板正在为您备餐</text>
+                                                                <text className={'textLeft'}>商家已接单</text>
                                                             ) : (
-                                                                <text className={'textLeft'}>已失败（成功退单的）</text>
+                                                                <text className={'textReturnOrder'}>已失败（成功退单的）</text>
                                                             )}
                                                         </View>
 
@@ -121,6 +177,41 @@ class TheCurrentOrder extends Component {
                                                             <Text className={'textLeft'}>{currentOrder.message}</Text>
 
                                                         </View>
+
+
+                                                        <View>
+                                                            <Button className={'btn1'}
+                                                                    onClick={this.toReturn.bind(this, currentOrder)}>退单</Button>
+                                                        </View>
+
+
+                                                        <AtModal isOpened={this.state.isReturn}>
+
+                                                            <AtModalHeader>退单</AtModalHeader>
+                                                            <AtModalContent>
+                                                                是否退单
+                                                            </AtModalContent>
+
+                                                            <AtModalAction>
+                                                                <Button
+                                                                    onClick={this.toReturnCard.bind(this, currentOrder)}>确定</Button>
+
+                                                                <Button onClick={this.handleCancel}>取消</Button>
+
+                                                            </AtModalAction>
+
+                                                        </AtModal>
+
+                                                        <AtModal isOpened={this.state.isSuccess}>
+                                                            <AtModalHeader>退单结果</AtModalHeader>
+                                                            <AtModalContent>
+                                                                退单成功，是否重新点一份
+                                                            </AtModalContent>
+                                                            <AtModalAction>
+                                                                <Button onClick={this.CheckReturnOrder}>确定</Button>
+                                                                <Button onClick={this.handleCancel2}>取消</Button>
+                                                            </AtModalAction>
+                                                        </AtModal>
 
 
                                                     </View>
@@ -151,4 +242,4 @@ class TheCurrentOrder extends Component {
     }
 }
 
-export default TheCurrentOrder
+export default TheReturnOrder
