@@ -28,6 +28,11 @@ export default function cardVoucher(state = INITIAL_STATE, action) {
                 ...state,
                 reduceMsg: data
             }
+        case REDUCE_CARD:
+            return {
+                ...state,
+                cardVoucherInfo: data
+            }
         default:
             return state
     }

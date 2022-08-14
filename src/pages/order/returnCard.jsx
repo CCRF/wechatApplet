@@ -9,7 +9,6 @@ import Taro from "@tarojs/taro";
 @connect(({currentOrder}) => ({currentOrder}), {getCurrentOrder})
 class ReturnCard extends Component {
 
-
     constructor(props) {
         super(props);
         this.props.getCurrentOrder();
@@ -21,11 +20,11 @@ class ReturnCard extends Component {
     }
 
 
-    theCurrentOrder = (currentOrder) => {
+    theReturnOrder = (currentOrder) => {
         this.setState({})
 
         Taro.navigateTo({
-            url: './theCurrentOrder?currentOrder=' + currentOrder.startTime
+            url: './theReturnOrder?currentOrder=' + currentOrder.startTime
         })
 
     }
@@ -40,6 +39,8 @@ class ReturnCard extends Component {
         const scrollTop = 0
         const Threshold = 300
 
+        const open_id = Taro.getStorageSync("personalInfo").openId
+
         const currentOrderList = this.props.currentOrder;
         console.log("当前订单如下：", currentOrderList)
 
@@ -52,7 +53,7 @@ class ReturnCard extends Component {
 
                 <View className={'allPage'}>
                     <View>
-                        <text>您的当前订单如下：</text>
+                        <text>您可以选择退掉的订单如下：</text>
                     </View>
                     <ScrollView
                         className='hos-list'
@@ -65,9 +66,13 @@ class ReturnCard extends Component {
                     >
                         {
                             this.props.currentOrder.currentOrderList.map((currentOrder, index) => {
-                                //先写死，显示顾客订单为2时的订单信息
-                                if (currentOrder.customerId == 1) {
+                                //测试数据
+                                if (currentOrder.customerId == 'oiMdq5v1ieICMBK7K7dGq6f3yIN8') {
+
+                                    //真实数据
+                                // if (currentOrder.customerId == open_id) {
                                     return (
+
                                         <View key={index}>
                                             <View>
                                                 {/*每个模块的样式*/}
@@ -76,7 +81,7 @@ class ReturnCard extends Component {
                                                     <View className={'allTitle'}>
                                                         <Text>外卖订单</Text>
 
-                                                        <View>
+                                                        <View >
                                                             <View className={'allType'}>
                                                                 {currentOrder.orderStatus == 0 ? (
                                                                     <view className={'v1'}>商家已接单</view>
@@ -89,9 +94,9 @@ class ReturnCard extends Component {
                                                     </View>
 
                                                     <View className={'allMessage'}
-                                                          onClick={() => this.theCurrentOrder(currentOrder)}>
+                                                          onClick={() => this.theReturnOrder(currentOrder)}>
 
-                                                        <Text>花江肯德基汉堡店 </Text>
+                                                        <Text>花江肯德基汉堡店   </Text>
 
                                                         <View className={'allType'}>
 
@@ -107,11 +112,11 @@ class ReturnCard extends Component {
                                                             {/*upperThreshold={Threshold}*/}
                                                             {/*>*/}
                                                             <View>
-                                                                {currentOrder.list.length != " " ? (
+                                                                {currentOrder.list.length!=" "?(
                                                                     <View>
                                                                         {currentOrder.list}
                                                                     </View>
-                                                                ) : (
+                                                                ) :(
                                                                     <View>
                                                                         无
                                                                     </View>
@@ -133,11 +138,12 @@ class ReturnCard extends Component {
                                                         </View>
 
                                                     </View>
+
                                                 </View>
 
                                             </View>
-
                                         </View>
+
                                     )
                                 } else {
 

@@ -1,6 +1,7 @@
 
 .allType{
-    background: #fafafa;
+    height: 1480px;
+    background-color: rgba(221,221,221,0.7);
 }
 /*顶部*/
 .view_head{
@@ -8,13 +9,19 @@
     background-size: 100% 100%;
     background-repeat: no-repeat;
     height: 200px;
-    border: 2px solid blue;
+    /*border: 2px solid blue;*/
 }
+
+/*.allBody{*/
+/*    border: 2px solid red;*/
+/*}*/
+
 .view_body{
+    width: 100%;
     height: auto;
-    border: 2px solid red;
-    padding: 20px;
-    margin: 20px;
+    /*border: 2px solid red;*/
+    /*padding: 10px;*/
+    /*margin: 10px;*/
 }
 
 
@@ -31,7 +38,7 @@
     top: 120px;
     left: 220px;
     color: white;
-    font-size: 30px;
+    font-size: 26px;
 }
 
 .background-image{
@@ -45,24 +52,93 @@
 .body_head{
     background: white;
     /*border: 1px solid blue;*/
-    margin: 5px;
-    padding: 10px;
+    margin: 15px;
+    padding: 20px;
+}
 
+.everyView{
+    display: flex;
+    line-height: 60px;
+    padding: 0 40px;
+    justify-content: space-between;
+}
+
+.textJianGe{
+    margin: 20px;
+    color: rgba(0,0,0,0.7);
+    /*border: 1px solid red;*/
+}
+
+.everyLine{
+    margin: 10px;
 }
 
 .text3{
     color: rgba(0,0,0,0.5);
     font-size: 30px;
+    margin: 10px;
     border-bottom: 1px dotted rgba(245,245,245,0.8);
 }
+
 .v1{
     border-bottom: 1px dotted rgba(245,245,245,0.8);
 }
 
 .body_body{
-    background: white;
+    margin: 15px;
+    padding: 20px;
+    background: #fffdfd;
+    font-size: 28px;
+    color: rgba(0,0,0,0.9);
     /*border: 1px solid blue;*/
-    margin: 5px;
-    padding: 10px;
+    /*margin: 5px;*/
+    /*padding: 10px;*/
+}
 
+.inLine{
+    border-bottom: 1px dotted rgba(0,0,0,0.9);
+}
+
+.text4{
+    font-size: 26px;
+    text-align: right;
+}
+.text5{
+    margin: 10px;
+    font-size: 23px;
+    color: rgba(255,215,0,0.9);
+}
+.text6{
+    font-size: 23px;
+    color: rgba(0,0,0,0.7);
+}
+
+.textBig{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.textLeft{
+    position: absolute;
+    left: 250px;
+    margin: 5px;
+    text-align: right;
+    /*border: 1px solid red;*/
+}
+
+.textReturnOrder{
+    position: absolute;
+    left: 250px;
+    margin: 5px;
+    text-align: right;
+    color: red;
+    /*border: 1px solid red;*/
+}
+
+.btn1{
+    position: absolute;
+    left: 260px;
+    margin: 20px;
+    background-color: red;
+    color: white;
 }
