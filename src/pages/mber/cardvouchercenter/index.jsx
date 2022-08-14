@@ -4,13 +4,10 @@ import CardVoucher from "./cardvoucher/cardvoucher"
 import {connect} from 'react-redux'
 import {AtFloatLayout } from "taro-ui"
 import "./index.scss"
-import {getCardVoucherInfo} from "../../../actions/carvoucher";
 
-@connect(({cardVoucher}) => ({cardVoucher}), {getCardVoucherInfo})
 class CardIndex extends Component {
     constructor(props) {
         super(props);
-        // this.props.getCardVoucherInfo()
         this.state = {
             limitGoods: [],
             voucherName: "",
@@ -27,7 +24,18 @@ class CardIndex extends Component {
     // 点击卡券图片显示限定商品信息
     showDetail = (item, e) => {
         const name = item.voucherName
-        this.state.limitGoods = item.voucherLimit
+        if (item === "") {
+            console.log("卡券中心showDetail方法item为空")
+        } else {
+            console.log("是否包含有红包",item.voucherName.includes("红包"))
+            if (item.voucherName.includes("红包")){
+                this.state.limitGoods = [{name: "全部商品都可使用",price: " 价格详情请看点餐页"}]
+            } else {
+                this.state.limitGoods = item.voucherLimit
+            }
+        }
+
+
         this.setState({
             voucherName: name,
             detailShow: true,
@@ -43,7 +51,7 @@ class CardIndex extends Component {
     }
 
     render() {
-        const cardList = this.props.cardVoucher.cardVoucherInfo
+        const cardList = this.props.cardVoucherInfo
         console.log('卡券信息',cardList)
         return (
             <View className="body">
@@ -74,4 +82,10 @@ class CardIndex extends Component {
     }
 }
 
-export default CardIndex
+const getCardVoucherInfoList = state => {
+    return {
+        cardVoucherInfo: state.cardVoucher.cardVoucherInfo
+    }
+}
+
+export default connect(getCardVoucherInfoList)(CardIndex)

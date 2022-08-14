@@ -21,7 +21,7 @@ export const addIntegral = () => {
         // url: 'http://localhost:8090/wx/addCustomerIntegral',
         url: 'https://g1.glypro19.com/wx/addCustomerIntegral',
         method: "POST",
-        data: {openId:15,integral: 5},
+        data: {openId:Taro.getStorageSync("personalInfo").openId,integral: 5},
         header: {
           // 'content-type': 'application/json'
           'content-type': 'application/x-www-form-urlencoded'
@@ -31,7 +31,6 @@ export const addIntegral = () => {
           dispatch({type: ADD_INTEGRAL})
         }
       })
-      // dispatch({type: ADD_INTEGRAL})
   }
 }
 
@@ -41,7 +40,7 @@ export const getInitIntegral = () => {
     Taro.request({
       // url: 'http://localhost:8090/wx/getCustomerIntegral',
       url: 'https://g1.glypro19.com/wx/getCustomerIntegral',
-      data: {openId:15},
+      data: {openId:Taro.getStorageSync("personalInfo").openId},
       header: {
         'content-type': 'application/json'
       },
@@ -60,7 +59,7 @@ export const initSignInStatus = () => {
     Taro.request({
       // url: 'http://localhost:8090/wx/getCustomerSignInStatus',
       url: 'https://g1.glypro19.com/wx/getCustomerSignInStatus',
-      data: {openId:15},
+      data: {openId:Taro.getStorageSync("personalInfo").openId},
       header: {
         'content-type': 'application/json'
       },
@@ -88,7 +87,7 @@ export const subtractIntegral = (requiredIntegral) => {
       // url: 'http://localhost:8090/wx/reduceCustomerIntegral',
       url: 'https://g1.glypro19.com/wx/reduceCustomerIntegral',
       method: "POST",
-      data: {openId:15,integral: requiredIntegral},
+      data: {openId:Taro.getStorageSync("personalInfo").openId,integral: requiredIntegral},
       header: {
         // 'content-type': 'application/json'
         'content-type': 'application/x-www-form-urlencoded'
@@ -112,7 +111,7 @@ export const updateSignInStatus = (signStatus,signStatusArray) => {
       // url: 'http://localhost:8090/wx/updateCustomerSignInStatus',
       url: 'https://g1.glypro19.com/wx/updateCustomerSignInStatus',
       method: "POST",
-      data: {openId:15,signInStatus:signStatus},
+      data: {openId:Taro.getStorageSync("personalInfo").openId,signInStatus:signStatus},
       header: {
         'content-type': 'application/json'
       },
