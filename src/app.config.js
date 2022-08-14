@@ -13,6 +13,8 @@ export default defineAppConfig({
         'pages/order/index',
         'pages/order/theCurrentOrder',
         'pages/order/theHistoryOrder',
+        'pages/order/theReturnOrder',
+        'pages/order/returnCard',
         'pages/ordering/index',
         'pages/personal/index',
         'pages/orderPayment/index'

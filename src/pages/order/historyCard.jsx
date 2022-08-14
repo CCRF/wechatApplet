@@ -1,6 +1,5 @@
 import {Component} from 'react'
 import {Image, ScrollView, Text, View} from '@tarojs/components'
-import TabBar from "../common/tabBar";
 import './historyCard.scss'
 
 import {connect} from "react-redux";
@@ -38,6 +37,8 @@ class OngoingCard extends Component {
         const scrollTop = 0
         const Threshold = 300
 
+        const open_id = Taro.getStorageSync("personalInfo").openId
+
 
         // const scrollStyle2 = {width: '300px'}
 
@@ -66,8 +67,11 @@ class OngoingCard extends Component {
                     >
                         {
                             this.props.historyOrder.historyOrderList.map((historyOrder, index) => {
-                                //先写死，显示顾客订单为2时的订单信息
-                                if (historyOrder.customerId == 2) {
+                                //测试
+                                if (historyOrder.customerId == 'oiMdq5v1ieICMBK7K7dGq6f3yIN8') {
+
+                                //真实
+                                // if (historyOrder.customerId == open_id) {
                                     return (
 
                                         <View key={index}>

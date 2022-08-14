@@ -1,22 +1,19 @@
 import {Component} from 'react'
-import {Button, Image, ScrollView, Text, View} from '@tarojs/components'
-import TabBar from "../common/tabBar";
-import './ongoingCard.scss'
+import {Image, ScrollView, Text, View} from '@tarojs/components'
+import './returnCard.scss'
 
 import {connect} from "react-redux";
 import {getCurrentOrder} from "../../actions/currentOrder";
 import Taro from "@tarojs/taro";
 
-
 @connect(({currentOrder}) => ({currentOrder}), {getCurrentOrder})
+class OnGoingCard extends Component {
 
-class OngoingCard extends Component {
 
     constructor(props) {
         super(props);
-        this.props.getCurrentOrder();
-        this.state = {
-        }
+        this.getCurrentOrder();
+        this.state = {}
     }
 
     getCurrentOrder = () => {
@@ -25,16 +22,17 @@ class OngoingCard extends Component {
 
 
     theCurrentOrder = (currentOrder) => {
-        this.setState({
-        })
+        this.setState({})
 
         Taro.navigateTo({
-            url:'./theCurrentOrder?currentOrder='+currentOrder.startTime
+            url: './theCurrentOrder?currentOrder=' + currentOrder.startTime
         })
 
     }
 
+    toReturnCard = () => {
 
+    }
 
 
     render() {
@@ -42,8 +40,12 @@ class OngoingCard extends Component {
         const scrollTop = 0
         const Threshold = 300
 
+        const open_id = Taro.getStorageSync("personalInfo").openId
+
         const currentOrderList = this.props.currentOrder;
+
         console.log("当前订单如下：", currentOrderList)
+
 
         return (
             <View>
@@ -51,11 +53,10 @@ class OngoingCard extends Component {
                 {/*    <AtButton type='primary' size='normal' onClick={this.getCurrentOrder}>查询当前订单</AtButton>*/}
                 {/*</View>*/}
 
-                <View>
+                <View className={'allPage'}>
                     <View>
                         <text>您的当前订单如下：</text>
                     </View>
-
                     <ScrollView
                         className='hos-list'
                         scrollY
@@ -65,12 +66,14 @@ class OngoingCard extends Component {
                         lowerThreshold={Threshold}
                         upperThreshold={Threshold}
                     >
-
                         {
                             this.props.currentOrder.currentOrderList.map((currentOrder, index) => {
-                                //先写死，显示顾客订单为2时的订单信息
-                                if(currentOrder.customerId==1){
+                                //测试数据
+                                // if (currentOrder.customerId == 'oiMdq5v1ieICMBK7K7dGq6f3yIN8') {
+                                //真实数据
+                                    if (currentOrder.customerId == open_id) {
                                     return (
+
                                         <View key={index}>
                                             <View>
                                                 {/*每个模块的样式*/}
@@ -140,8 +143,8 @@ class OngoingCard extends Component {
                                                 </View>
 
                                             </View>
-
                                         </View>
+
                                     )
                                 } else {
 
@@ -149,9 +152,10 @@ class OngoingCard extends Component {
 
                             })
                         }
-                        <View className={'tipsBottom'}>
-                            已到到底啦
-                        </View>
+
+                        {/*<View className={'tipsBottom'}>*/}
+                        {/*    已到到底啦*/}
+                        {/*</View>*/}
                     </ScrollView>
 
 
@@ -163,4 +167,5 @@ class OngoingCard extends Component {
     }
 }
 
-export default OngoingCard
+
+export default OnGoingCard
