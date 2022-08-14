@@ -1,6 +1,5 @@
 import {Component} from 'react'
 import {Button, Image, ScrollView, Text, View} from '@tarojs/components'
-import TabBar from "../common/tabBar";
 import './ongoingCard.scss'
 
 import {connect} from "react-redux";

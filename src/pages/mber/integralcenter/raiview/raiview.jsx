@@ -2,6 +2,7 @@ import {Component} from "react"
 import {Button, Image, View} from "@tarojs/components";
 import integralIcon from "../../../../image/members/积分-实色.png";
 import "./raiview.scss"
+import Taro from "@tarojs/taro";
 
 class RaiView extends Component {
 
@@ -18,12 +19,6 @@ class RaiView extends Component {
   render() {
     return (
       <View className="main">
-        {/*<View className="integralImgArea"><Image src={this.props.img}/>{this.props.integral}积分</View>*/}
-        {/*<View className="raiImgArea">*/}
-        {/*  <Image src={this.props.img}/>*/}
-        {/*</View>*/}
-        {/*<View className="raiNameArea">{this.props.name}</View>*/}
-        {/*<View className="raiBtnArea"><Button plain="true">立即兑换</Button></View>*/}
         {this.props.raiList.map((item, index) => {
           return (
             <View className="raiArea">
@@ -33,7 +28,9 @@ class RaiView extends Component {
                 <Image src={item.img}/>
               </View>
               <View className="raiNameArea">{item.name}</View>
-              <View className="raiBtnArea"><Button onClick={this.props.conversion.bind(this,item)} plain="true">立即兑换</Button></View>
+              <View className="raiBtnArea">
+                <Button onClick={this.props.conversion.bind(this,item)} plain="true">立即兑换</Button>
+              </View>
             </View>
           )
         })}

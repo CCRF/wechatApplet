@@ -1,6 +1,5 @@
 import {Component} from 'react'
 import {Image, ScrollView, Text, View} from '@tarojs/components'
-import TabBar from "../common/tabBar";
 import './historyCard.scss'
 
 import {connect} from "react-redux";

@@ -6,7 +6,8 @@ import {getCurrentOrder} from "../../actions/currentOrder";
 import OngoingCard from "./ongoingCard";
 import HistoryCard from "./historyCard";
 import ReturnCard from "./returnCard";
-
+import {connect} from "react-redux"
+import Taro from "@tarojs/taro";
 
 @connect(({currentOrder}) => ({currentOrder}),{getCurrentOrder})
 class skip extends Component {

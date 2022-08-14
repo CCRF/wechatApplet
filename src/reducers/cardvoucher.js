@@ -21,12 +21,12 @@ export default function cardVoucher(state = INITIAL_STATE, action) {
         case ADD_CARD:
             return {
                 ...state,
-                cardVoucherInfo: data
+                addMsg: data
             }
         case REDUCE_CARD:
             return {
                 ...state,
-                cardVoucherInfo: data
+                reduceMsg: data
             }
         default:
             return state

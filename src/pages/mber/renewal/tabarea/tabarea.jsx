@@ -15,10 +15,10 @@ class TabArea extends Component {
     this.state={
       itemList: [
         [
-          {url:T1,raiInfo:"升级大额红包"},
-          {url:T1,raiInfo:"升级大额红包"},
-          {url:T1,raiInfo:"升级大额红包"},
-          {url:T1,raiInfo:"升级大额红包"}
+          {url:T1,raiInfo:"每次点餐享受"+ this.props.discount},
+          {url:T1,raiInfo:"每月送" + this.props.singlePrice + "元红包"},
+          {url:T1,raiInfo:"每天签到积分翻" + this.props.double},
+          {url:T1,raiInfo:"可用积分兑换相应红包"}
         ],
           [
             {url:T2,raiInfo:"升级大额红包"},
@@ -73,10 +73,10 @@ class TabArea extends Component {
           {/*2.1.3、支付详情区域*/}
           <View className="m-c"><Text>会员惊喜抵扣券</Text><Text className="m-c1">暂无可用</Text></View>
           <View className="p-m">
-            <View className="p-m-t1">会员红包等权益将在67天后发放</View>
+            <View className="p-m-t1">开通后会员红包等权益立即到账</View>
             {/*2.1.3.1支付按钮*/}
             <View className="pay-btn">
-              <Button>Ұ<Text>15</Text>去支付</Button>
+              <Button onClick={this.props.payment.bind(this,this.props.allPrice)}>Ұ<Text>{this.props.allPrice}</Text>去支付</Button>
             </View>
             <View className="p-m-t2">放心支付，不自动续费</View>
           </View>
