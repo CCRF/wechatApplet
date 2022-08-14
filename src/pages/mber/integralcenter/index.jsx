@@ -75,7 +75,14 @@ class Index extends Component {
     // 签到
     signIn = () => {
         const signInStatus = this.props.integralCenter.signInStatus
-        const weekDay = new Date().getDay()
+        const weekDay1 = new Date().getDay()
+
+        var weekDay = 0
+        if (weekDay1 === 0) {
+            weekDay = 7
+        } else {
+            weekDay = weekDay1
+        }
 
         // 判断今天是否已签 0未签，1已签
         if (signInStatus[weekDay - 1] === 0) {
