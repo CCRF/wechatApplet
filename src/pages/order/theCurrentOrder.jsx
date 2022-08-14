@@ -43,8 +43,8 @@ class TheCurrentOrder extends Component {
 
                 {
                     this.props.currentOrder.currentOrderList.map((currentOrder, index) => {
-                        //先写死，显示顾客订单为1时的订单信息
-                        if(currentOrder.customerId==1&&currentOrder.startTime==this.state.onlyCurrentOrder){
+                        //先写死，显示顾客订单为2时的订单信息
+                        if(currentOrder.customerId==34&&currentOrder.startTime==this.state.onlyCurrentOrder){
                             return (
                                 <View key={index}>
                                     <View >
@@ -52,7 +52,6 @@ class TheCurrentOrder extends Component {
                                             <Text>外卖订单</Text>
                                             <Text className={'iconfont icon-more'}>商家已经接单</Text>
                                         </View>
-
 
                                         <View className={'allMessage'}
                                               onClick={() => this.xiangxiOrder(currentOrder)}>
@@ -63,9 +62,14 @@ class TheCurrentOrder extends Component {
                                                 {currentOrder.orderStatus == 0 ? (
                                                     <view>进行中</view>
                                                 ) : (
-                                                    <view>历史</view>
+                                                    <view>历史订单中已经完成已经成功退单</view>
                                                 )}
 
+                                            </View>
+
+                                            <View className={'allType'}>
+                                                <Text>顾客ID：</Text>
+                                                {currentOrder.customerId}
                                             </View>
 
                                             <View className={'allType'}>

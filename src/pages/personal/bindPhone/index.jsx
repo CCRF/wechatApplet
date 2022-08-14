@@ -1,8 +1,10 @@
 import { Component } from 'react'
 import {View, Text, Button} from '@tarojs/components'
 import Taro from "@tarojs/taro";
+import {connect} from "react-redux";
+import {updatePhoneNumber} from "../../../actions/memberInfo";
 
-
+@connect(({memberPage,}) => ({memberPage,}), {updatePhoneNumber,})
 class Personal extends Component {
     constructor(args) {
         super(args);
@@ -51,6 +53,8 @@ class Personal extends Component {
                         Taro.setStorageSync("phoneNumber",res.data.data.phoneNumber)
                         // 允许显示手机详情页
                         that.props.checked()
+                        // 更新手机状态
+                        that.props.updatePhoneNumber()
                         console.log("手机号是吗：",res.data.data.phoneNumber);
                     }
                 })

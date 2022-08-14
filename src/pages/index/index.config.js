@@ -1,3 +1,3 @@
 export default definePageConfig({
-  navigationBarTitleText: '肯德基自助点餐'
+  navigationBarTitleText: '汉堡店自助点餐'
 })

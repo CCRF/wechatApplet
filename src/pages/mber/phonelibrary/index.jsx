@@ -2,9 +2,9 @@ import {Component} from "react"
 import {View, Text, Image,Button} from "@tarojs/components"
 import { AtList, AtListItem } from "taro-ui"
 import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from "taro-ui"
-import Icon from "../../../image/members/hha.png"
 import "./index.scss"
 import Taro from "@tarojs/taro";
+import {checkPhone} from "../util/phoneutil";
 class Index extends Component {
 
   constructor(props) {
@@ -49,23 +49,23 @@ class Index extends Component {
 
   render () {
     const isOpened = this.state.isOpened
-    const icon = Taro.getStorageSync("personalInfo").avatar
-    const wxName = Taro.getStorageSync("personalInfo").nickName
+    const personalInfo = Taro.getStorageSync("personalInfo")
+    const icon = personalInfo.avatar
+    const wxName = personalInfo.nickName
     // 手机号预处理
-    const phoneNumber = Taro.getStorageSync("personalInfo").phoneNumber
-    const prePhoneNumber = phoneNumber.substring(0,3)
-    const afterPhoneNumber = phoneNumber.substring(phoneNumber.length - 4,phoneNumber.length)
-    const phone = "手机号：" + prePhoneNumber + "******" + afterPhoneNumber
+    // 查看该用户是否绑定手机
+    const phoneNumberFromStorage = personalInfo.phoneNumber
+    const phone = checkPhone(phoneNumberFromStorage)
+    console.log("我的手机馆检查手机号：",phone)
 
-    console.log("能否拿到数据",Taro.getStorageSync("personalInfo"))
     return (
       <View>
         <AtList >
-          <AtListItem arrow='right' title='头像'/>
+          <AtListItem arrow='right' title={'微信头像'}/>
           <View className="test-ha" ><Image src={icon}/></View>
-          <AtListItem title={wxName} />
+          <AtListItem title={ "微信名称：" + wxName} />
           {
-            phoneNumber === "" ? (
+            phone === "" ? (
                 <AtListItem onClick={this.changeToPhoneDetail} title="?????" note='未绑定手机号' arrow='right' />
                 // <AtListItem onClick={this.changeToPhoneDetail}  title={phone}  arrow='right' />
             ) : (

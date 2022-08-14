@@ -10,15 +10,15 @@ class TheHistoryOrder extends Component {
 
     constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             c: 0
         }
 
     }
 
     componentWillMount() {
-        const onlyHistoryOrder=Current.router.params.historyOrder;
-        console.log("12134353514",onlyHistoryOrder)
+        const onlyHistoryOrder = Current.router.params.historyOrder;
+        console.log("12134353514", onlyHistoryOrder)
         this.setState({
             c: onlyHistoryOrder
         })
@@ -35,72 +35,89 @@ class TheHistoryOrder extends Component {
         const a = 0
 
         return (
-            <View className={'btn3'}>
-                <View>
-                    <Text>这里是详细菜单信息</Text>
+            <View className={'allType'}>
+                <View className={'view_head'}>
+                    <Text className={'text1'}>订单已完成</Text>
+                    <Text className={'text2'}>订单已完成，祝您用餐愉快</Text>
                 </View>
 
+                <View className={'view_body'}>
 
-                {
-                    this.props.historyOrder.historyOrderList.map((historyOrder, index) => {
-                        //先写死，显示顾客订单为1时的订单信息
-                        if(historyOrder.customerId==1&&historyOrder.startTime==this.state.c){
-                            return (
-                                <View key={index}>
-                                    <View className={'SubModuleSub'}>
+                    {/*<View>*/}
+                    {/*    <Text>这里是详细菜单信息</Text>*/}
+                    {/*</View>*/}
 
 
-                                        <View className={'person'}
-                                              onClick={() => this.theHistoryOrder(historyOrder)}>
-                                            <Text>花江肯德基汉堡店</Text>
+                    {
+                        this.props.historyOrder.historyOrderList.map((historyOrder, index) => {
+                            //先写死，显示顾客订单为2时的订单信息
+                            if (historyOrder.customerId == 2 && historyOrder.startTime == this.state.c) {
+                                return (
+                                    <View key={index}>
+                                        <View>
+
+
                                             <View>
-                                                <Text>订单状态：</Text>
+                                                <View className={'body_head'}>
+                                                    <View>花江肯德基汉堡店》</View>
+                                                    <Text className={'text3'}>桂林电子科技大学花江校区xx街A108-3</Text>
 
-                                                {historyOrder.orderStatus == 0 ? (
-                                                    <view>进行中</view>
-                                                ) : (
-                                                    <view>历史</view>
-                                                )}
+                                                    <View className={'v1'}>
+                                                        <Text>订单内容：</Text>
+                                                        {historyOrder.list}
+                                                        ￥{historyOrder.amount}
+                                                    </View>
+
+                                                    <View>
+                                                        共X件，合计￥{historyOrder.amount}
+                                                        <Text>奖励xx</Text>
+                                                        <Text>(欢迎您下次继续在本店下单)</Text>
+                                                    </View>
+
+                                                </View>
+
+
+                                                <View className={'body_body'}>
+
+                                                    <View>
+                                                        <Text>下单时间：</Text>
+                                                        {historyOrder.startTime}
+                                                    </View>
+
+                                                    <View>
+                                                        <Text>订单状态：</Text>
+
+                                                        {historyOrder.orderStatus == 1 ? (
+                                                            <view>已经完成</view>
+                                                        ) : (
+                                                            <view>已失败（成功退单的）</view>
+                                                        )}
+                                                    </View>
+
+
+                                                    <View>
+                                                        <Text>订单备注</Text>
+                                                        {historyOrder.message}
+                                                    </View>
+
+
+                                                </View>
+
 
                                             </View>
 
-                                            <View>
-                                                <Text>消费金额：</Text>
-                                                {historyOrder.amount}
-                                            </View>
-
-                                            <View>
-                                                <Text>订单内容：</Text>
-                                                {historyOrder.list}
-                                            </View>
-
-                                            <View>
-                                                <Text>订单备注</Text>
-                                                {historyOrder.message}
-                                            </View>
-
-                                            <View>
-                                                <Text>创建时间：</Text>
-                                                {historyOrder.startTime}
-                                            </View>
 
                                         </View>
 
-
                                     </View>
+                                )
+                            } else {
+                                //暂时没有展示
+                            }
 
-                                </View>
-                            )
-                        }else {
-                            //暂时没有展示
-                        }
-
-                    })
-                }
-                {
-
-                }
-
+                        })
+                    }
+                </View>
 
 
             </View>

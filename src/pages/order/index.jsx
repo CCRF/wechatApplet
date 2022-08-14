@@ -36,6 +36,7 @@ class Home extends Component {
         return (
             <View className={'page'}>
 
+                {/*头部*/}
                 <View className={'P_title'}>
                     <View className={this.state.orderType == 'ongoingcard' ? 'P_active P_ongoingcard' : 'P_ongoingcard'}
                           onClick={this.tabChange} data-id={'ongoingcard'}>
@@ -51,9 +52,11 @@ class Home extends Component {
                     </View>
                 </View>
 
-                <View>
+                {/*中间订单列表显示区域*/}
+                <View className={'allOrderView'}>
                     <Skip isOnGoing={this.state.orderType}></Skip>
                 </View>
+
             </View>
         )
     }
