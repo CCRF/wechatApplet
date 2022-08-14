@@ -1,8 +1,6 @@
 import {Component} from 'react'
-import {Button, Image, ScrollView, Text, View} from '@tarojs/components'
-// ongoingCard / returnCard
+import {Image, ScrollView, Text, View} from '@tarojs/components'
 import './ongoingCard.scss'
-import './returnCard.scss'
 
 import {connect} from "react-redux";
 import {getCurrentOrder} from "../../actions/currentOrder";
@@ -29,10 +27,6 @@ class OnGoingCard extends Component {
         Taro.navigateTo({
             url: './theCurrentOrder?currentOrder=' + currentOrder.startTime
         })
-
-    }
-
-    toReturnCard = () => {
 
     }
 
@@ -82,7 +76,7 @@ class OnGoingCard extends Component {
                                                 <View className={'everyOrder'}>
 
                                                     <View className={'allTitle'}>
-                                                        <Text>外卖订单</Text>
+                                                        <Text>订单</Text>
 
                                                         <View >
                                                             <View className={'allType'}>

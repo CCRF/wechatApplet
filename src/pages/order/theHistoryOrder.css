@@ -1,5 +1,5 @@
 
-.allType{
+.allType2{
     height: 1480px;
     background-color: rgba(221,221,221,0.7);
 }
@@ -9,7 +9,7 @@
     background-size: 100% 100%;
     background-repeat: no-repeat;
     height: 200px;
-    /*border: 2px solid blue;*/
+    border: 2px solid blue;
 }
 
 /*.allBody{*/

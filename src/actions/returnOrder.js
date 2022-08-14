@@ -4,8 +4,8 @@ import Taro from "@tarojs/taro";
 export const moderOrderState = (returnOrder) => {
     return (dispatch) => {
         Taro.request({
-            url: 'http://localhost:8090/wx/moderOrderState',
-            // url: 'https://g1.glypro19.com/wx/moderOrderState',
+            // url: 'http://localhost:8090/wx/moderOrderState',
+            url: 'https://g1.glypro19.com/wx/moderOrderState',
             method: "POST",
             // data: {openId:15,integral: 5},
             data:{

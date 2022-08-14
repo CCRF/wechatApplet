@@ -32,10 +32,10 @@ class skip extends Component {
 
 
     render() {
-        // const open_id = Taro.getStorageSync("personalInfo").openId
+        const open_id = Taro.getStorageSync("personalInfo").openId
 
         //测试用的
-        const open_id ='oiMdq5v1ieICMBK7K7dGq6f3yIN8'
+        // const open_id ='oiMdq5v1ieICMBK7K7dGq6f3yIN8'
         console.log("用户id", open_id)
 
         let currentCustomerNum = 0
@@ -74,7 +74,6 @@ class skip extends Component {
 
         //先写死错误的方式，应当根据有没有当前订单去判断显示的界面（这里还不知道这么弄，先设置一个达不到的长度length）
         if (isOnGoing == 'ongoingcard') {
-            // if (currentOrderList!=null&&currentOrderList.length==100){
             if (currentOrderList != null && currentCustomerNum > 0) {
                 status =
                     <View className={'allOrder1'}>
@@ -86,7 +85,7 @@ class skip extends Component {
                     <View className={'noneOrder'}>
                         <View>
                             <Text className={'text1'} >
-                                您还没有订单，快去点一份喜欢汉堡吧~
+                                您当前没有订单，快去点一份喜欢汉堡吧~
                             </Text>
                         </View>
 
@@ -147,7 +146,7 @@ class skip extends Component {
                     <View className={'noneOrder'}>
                         <View>
                             <Text className={'text1'} >
-                                您还没有订单，快去点一份喜欢汉堡吧~
+                                您还没有可退订单，快去点一份喜欢汉堡吧~
                             </Text>
                         </View>
 

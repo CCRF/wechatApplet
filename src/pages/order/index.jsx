@@ -40,7 +40,7 @@ class Home extends Component {
                 <View className={'P_title'}>
                     <View className={this.state.orderType == 'ongoingcard' ? 'P_active P_ongoingcard' : 'P_ongoingcard'}
                           onClick={this.tabChange} data-id={'ongoingcard'}>
-                        进行中订单
+                        当前订单
                     </View>
                     <View className={this.state.orderType == 'historycard' ? 'P_active P_historycard' : 'P_historycard'}
                           onClick={this.tabChange} data-id={'historycard'}>
@@ -48,7 +48,7 @@ class Home extends Component {
                     </View>
                     <View className={this.state.orderType == 'returncard' ? 'P_active P_returncard' : 'P_returncard'}
                           onClick={this.tabChange} data-id={'returncard'}>
-                        退单
+                        可退订单
                     </View>
                 </View>
 
@@ -56,6 +56,7 @@ class Home extends Component {
                 <View className={'allOrderView'}>
                     <Skip isOnGoing={this.state.orderType}></Skip>
                 </View>
+
 
             </View>
         )
