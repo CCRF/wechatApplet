@@ -120,7 +120,7 @@ class HotSpot extends Component {
         this.setState({
             isOpened: true,
             isOpenCar: false,
-            sheetImg:'https://g1.glypro19.com'+ combo.picture,
+            sheetImg:'https://g1.glypro19.com/img/setmeal/'+ combo.picture,
             sheetName: combo.name,
             sheetContain: combo.contain,
             sheetPrice: combo.price,
@@ -196,7 +196,7 @@ class HotSpot extends Component {
                 //第一次点击无数据时
                 if (this.state.foodAddName.length === 0) {
                     this.state.shoppingObj = {
-                        shoppingImg:'https://g1.glypro19.com'+ combofood.picture,
+                        shoppingImg:'https://g1.glypro19.com/img/setmeal/'+ combofood.picture,
                         shoppingName: combofood.name,
                         shoppingContain: combofood.contain,
                         shoppingPrice: combofood.price.toFixed(2),
@@ -216,7 +216,7 @@ class HotSpot extends Component {
                 }
                 if (i === this.state.foodAddName.length - 1) {
                     this.state.shoppingObj = {
-                        shoppingImg:'https://g1.glypro19.com'+ combofood.picture,
+                        shoppingImg:'https://g1.glypro19.com/img/setmeal/'+ combofood.picture,
                         shoppingName: combofood.name,
                         shoppingContain:combofood.contain,
                         shoppingPrice: combofood.price.toFixed(2),
@@ -437,13 +437,13 @@ class HotSpot extends Component {
                     interval={2000}
                     autoplay>
                     <SwiperItem>
-                        <Image src='https://s2.loli.net/2022/08/02/Vyb7TLziD6fpkUg.png' className='viewImage'></Image>
+                        <Image src='https://img.zcool.cn/community/0110df5d4a3ed6a80120695c9276eb.jpg@1280w_1l_2o_100sh.jpg' className='viewImage'></Image>
                     </SwiperItem>
                     <SwiperItem>
-                        <Image src='https://s2.loli.net/2022/08/02/kQV4AonCpvjS26I.png' className='viewImage'></Image>
+                        <Image src='https://bpic.588ku.com/back_origin_min_pic/19/10/22/769800f25603c8130e7f90f2b4ec2090.jpg' className='viewImage'></Image>
                     </SwiperItem>
                     <SwiperItem>
-                        <Image src='https://s2.loli.net/2022/08/02/yPICFAZKzrtYvE5.png' className='viewImage'></Image>
+                        <Image src='https://img.zcool.cn/community/012a3c5cdd58aca801214168c206d0.jpg@1280w_1l_2o_100sh.jpg' className='viewImage'></Image>
                     </SwiperItem>
                 </Swiper>
 
@@ -495,7 +495,7 @@ class HotSpot extends Component {
                             <Text className='tipsName'>套餐</Text>
                             {this.props.orderingCombo.comboList.map(comboFood => (
                                 <View className='SubModuleSub' onClick={() => this.chooseCombo(comboFood)}>
-                                    <Image src={'https://g1.glypro19.com'+comboFood.picture} className='foodImg'></Image>
+                                    <Image src={'https://g1.glypro19.com/img/setmeal/'+comboFood.picture} className='foodImg'></Image>
                                     <View className='tipsFont'>{comboFood.name}</View>
                                     <View className='price'>￥{comboFood.price.toFixed(2)}</View>
                                     <View className='choose'

@@ -227,6 +227,7 @@ class Index extends Component {
         return (
             <View>
                 <View className='main'>
+                    <View className='detail'>商品详情</View>
                     {this.state.shoppingList.map(food => (
                         <View className='food' onClick={this.test}>
                             <Image src={food.shoppingImg} className='img'></Image>
@@ -237,6 +238,11 @@ class Index extends Component {
                             <View className='price'>￥{food.shoppingPrice * food.foodNum}</View>
                         </View>
                     ))}
+
+                    {/*备注界面*/}
+                    <View className='remark'>
+                        备注
+                    </View>
 
                     {/*可用卡券界面*/}
                     <View>
@@ -249,7 +255,10 @@ class Index extends Component {
                             count={this.countPrice}
                         />
                     </View>
+
                 </View>
+
+
 
                 <View className='pay'>
                     <View className='goBack' onClick={() => this.goBack()}>取消订单</View>
@@ -264,12 +273,10 @@ class Index extends Component {
                     <AtModalHeader>套餐内容</AtModalHeader>
                     <AtModalContent>
                         {this.state.contain}
-                        <View>
-
-                        </View>
                     </AtModalContent>
                     <AtModalAction> <Button onClick={this.close}>取消</Button></AtModalAction>
                 </AtModal>
+
 
 
                 {/*是否支付界面*/}
