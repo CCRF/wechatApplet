@@ -19,7 +19,7 @@ let data = {
 }
 
 // 订单生成
-export const addCustomerOrder = (shoppingList,totalPrice) => {
+export const addCustomerOrder = (shoppingList,totalPrice,remark) => {
   // 购物列表信息处理
   var goodList = ""
   shoppingList.map((item,index) => {
@@ -37,8 +37,8 @@ export const addCustomerOrder = (shoppingList,totalPrice) => {
         startTime: orderTime,
         list: gList,
         amount: totalPrice,
-        orderStatus: 1,
-        message: ".....",
+        orderStatus: 0,
+        message: remark,
         customerId: Taro.getStorageSync("personalInfo").openId,
       },
       header: {

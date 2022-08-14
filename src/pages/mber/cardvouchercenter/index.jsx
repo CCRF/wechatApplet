@@ -4,6 +4,7 @@ import CardVoucher from "./cardvoucher/cardvoucher"
 import {connect} from 'react-redux'
 import {AtFloatLayout } from "taro-ui"
 import "./index.scss"
+import Taro from "@tarojs/taro";
 
 class CardIndex extends Component {
     constructor(props) {
@@ -19,6 +20,10 @@ class CardIndex extends Component {
     immediatelyConversion = (item, e) => {
         console.log("卡券aaa",item)
         // 获取对应卡券的限定商品，跳转到点餐页
+        Taro.switchTab({
+            url: "../ordering/index"
+        }).then(r => {
+        })
     }
 
     // 点击卡券图片显示限定商品信息

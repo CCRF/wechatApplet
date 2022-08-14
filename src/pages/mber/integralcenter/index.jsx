@@ -17,6 +17,7 @@ import {
 import {addCardVoucherInfo, getCardVoucherInfo} from "../../../actions/carvoucher";
 import Taro from "@tarojs/taro";
 import {addVoucher} from "../util/phoneutil";
+import {add} from "../../../actions/counter";
 
 @connect(({integralCenter, cardVoucher}) => ({integralCenter, cardVoucher}), {
     subtractIntegral,
@@ -143,11 +144,13 @@ class Index extends Component {
             // 进行卡券增加操作
             this.props.addCardVoucherInfo(this.state.addCard)
             console.log("要更新的卡券信息",this.state.addCard)
-            // 将该卡券信息添加到数据库，然后在这里在发一次请求数据库个人卡券信息
-            // 更新全局卡券信息
-            this.props.getCardVoucherInfo()
             // 个人积分相应减少
             this.props.subtractIntegral(this.state.requiredIntegral)
+            setTimeout(() => {
+                // 将该卡券信息添加到数据库，然后在这里在发一次请求数据库个人卡券信息
+                // 更新全局卡券信息
+                this.props.getCardVoucherInfo()
+            }, 1000)
         }
         // 弹出兑换状态提示框
         this.setState({
@@ -156,7 +159,7 @@ class Index extends Component {
         })
     }
 
-    // 兑换状态提示框关闭时操作
+    // 兑换状态提示框关闭时操作，默认3秒后关闭
     conversionToastClose = () => {
         this.setState({
             toastConversion: false
@@ -240,10 +243,10 @@ class Index extends Component {
                     />
                 </View>
                 <AtNoticebar marquee>
-                    这是 NoticeBar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏
+                    这是 积分中心 通告栏，这是 积分中心 通告栏，这是 积分中心 通告栏
                 </AtNoticebar>
                 <AtNoticebar marquee>
-                    这是 NoticeBar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏
+                    这是 积分中心 通告栏，这是 积分中心 通告栏，这是 积分中心 通告栏
                 </AtNoticebar>
             </View>
         )
